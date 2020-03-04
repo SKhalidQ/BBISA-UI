@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$my-theme-primary: mat-palette($mat-red);
+$my-theme-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$my-theme-warn: mat-palette($mat-deep-orange);
+
+$my-theme: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+@include angular-material-theme($my-theme);
+
+//"src/my-theme.scss" Add this in the Angular.Json file if wanting to use

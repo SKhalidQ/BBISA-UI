@@ -1,0 +1,30 @@
+<form #form class="example-form" method="PUT" > <!--action="/crud/product/add"-->
+  <h2 class="fs-title">Add Product</h2>
+  <h3 class="fs-subtitle">Enter product details</h3>
+  <mat-form-field class="example-full-width">
+    <mat-label>Brand</mat-label>
+    <input matInput class="input" placeholder="Ex. Damm">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Flavour</mat-label>
+    <input matInput class="input" placeholder="Flavour">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Type</mat-label>
+    <input matInput class="input" placeholder="Type">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Stock</mat-label>
+    <input matInput class="input" placeholder="Stock">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Price</mat-label>
+    <input matInput class="input" placeholder="Price">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button type="submit" color="primary" class="submitBtn" (click)="form.submit(); openSnackBar()">Add Product</button>
+</form>

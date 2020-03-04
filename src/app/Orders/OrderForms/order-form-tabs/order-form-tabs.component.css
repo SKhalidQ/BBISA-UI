@@ -1,0 +1,14 @@
+.tab-group{
+    text-align: center;
+    margin: auto;
+    /* height: 550px;
+    width: 485px; */
+}
+
+@media(min-width: 600px){
+    .tab-group{
+        height: 570px;
+        width: 485px;
+        min-width: 485px;
+    }
+}

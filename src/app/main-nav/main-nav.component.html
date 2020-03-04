@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!--Side Navigation Bar-->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+      
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/Counter" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Counter</a>
+      <a mat-list-item routerLink="/Orders" routerLinkActive="active">New Orders</a>
+      <a mat-list-item routerLink="/User-Account" routerLinkActive="active">Your Account</a>
+      <mat-divider class="Separator"></mat-divider>
+      <a mat-list-item routerLink="/Log-In" routerLinkActive="active">Log In</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!--Side Navigation Bar Content-->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="homeButton"><a routerLink="/">Beer Bottle Inventory</a></span>
+      <span class="rightButtons"></span>
+        <mat-icon matBadge="1" matBadgeColor="warn">shopping_basket</mat-icon>
+          <!-- Include text description of the icon's meaning for screen-readers -->
+          <span class="cdk-visually-hidden">
+            Example with a home icon with overlaid badge showing the number 15
+          </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    <!-- <ng-content></ng-content> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
