@@ -1,0 +1,33 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    height: 100%;
+  }
+  
+  mat-sidenav {
+    width: 100px;
+  }
+  
+  .navContentIcon {
+    height: 10px;
+    margin-right: 5px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  a:hover, a:active {
+    color: lightgray;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .buttonSpace{
+    margin-right: 5px;
+  }
+  
+  .RightButtons{
+    width: 80px;
+  }

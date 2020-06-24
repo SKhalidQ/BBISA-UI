@@ -1,0 +1,37 @@
+<mat-sidenav-container class="example-sidenav-container">
+
+  <mat-sidenav #sideNav role="navigation">
+    <mat-sidenav-container class="sideNavContainer">
+
+
+    </mat-sidenav-container>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+
+      <div>
+        <button mat-icon-button (click)="sideNav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      
+      <div>
+        <a routerLink="/Home">Beer Bottle Inventory</a>
+      </div>
+
+      <span class="spacer"></span>
+
+      <div class="buttonSpace">
+        <button class="RightButtons" mat-raised-button color="primary" routerLink="/LogIn">Login</button> <span class="buttonSpace"></span>
+        <button class="RightButtons" mat-raised-button color="primary" routerLink="/SignUp">SignUp</button>
+      </div>
+
+    </mat-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+      
+  </mat-sidenav-content>
+</mat-sidenav-container>
