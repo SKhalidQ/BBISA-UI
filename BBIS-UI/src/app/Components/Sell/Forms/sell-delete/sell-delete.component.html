@@ -1,0 +1,19 @@
+<div>
+    <h3>Delete Sell</h3>
+    <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+
+        <div class="inputDiv">
+            <mat-form-field class="txtBox" appearance="standard">
+                <mat-label>Sell ID</mat-label>
+                <input matInput type="number" id="orderID" name="orderID" ngModel placeholder="Sell ID">
+            </mat-form-field> <br>
+        </div>
+
+        <div class="request-themes">
+            <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+
+    </form>
+</div>

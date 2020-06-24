@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$default-theme-primary: mat-palette($mat-pink);
+$default-theme-accent: mat-palette($mat-blue-gray);
+$default-theme-warn: mat-palette($mat-deep-orange, A400);
+
+$default-theme: mat-dark-theme($default-theme-primary, $default-theme-accent, $default-theme-warn);
+
+@include angular-material-theme($default-theme);
+
+.request-themes {
+    $request-primary: mat-palette($mat-green, 800);
+    $request-accent:  mat-palette($mat-blue, A700);
+    $request-warn: mat-palette($mat-red, 800);
+  
+    $request-theme: mat-dark-theme($request-primary, $request-accent, $request-warn);
+  
+    @include angular-material-theme($request-theme);
+}
+
+.toolBar-themes {
+    $toolBar-theme-primary: mat-palette($mat-pink, 700);
+    $toolBar-theme-accent: mat-palette($mat-blue-gray);
+    $toolBar-theme-warn: mat-palette($mat-deep-orange, A400);
+    
+    $toolBar-theme: mat-dark-theme($toolBar-theme-primary, $toolBar-theme-accent, $toolBar-theme-warn);
+    
+    @include angular-material-theme($toolBar-theme);
+}

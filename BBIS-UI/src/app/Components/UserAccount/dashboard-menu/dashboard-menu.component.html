@@ -1,0 +1,33 @@
+<div class="mat-elevated-m8">
+    <h4>Edit Inventory Items</h4>
+    <button mat-raised-button color="warn">Products</button>
+    <br>
+    <button mat-raised-button color="warn" disabled>Orders
+        <span class="tooltiptext">Coming Soon</span>
+    </button>
+    
+    <br>
+    <button mat-raised-button color="warn" disabled>Checkout
+        <span class="tooltiptext">Coming Soon</span>
+    </button>
+    
+    <mat-divider></mat-divider>
+
+    <h4>Graphs</h4>
+    <mat-form-field>
+    <mat-label>Choose an option</mat-label>
+    <mat-select disabled>
+        <mat-option value="profit">Profit</mat-option>
+        <mat-option value="productStock">Sales</mat-option>
+        <mat-divider></mat-divider>
+        <mat-option value="option3">Product Stock History</mat-option>
+    </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="warn" matTooltip="Info about the action"
+        matTooltip="Coming Soon"
+        [matTooltipPosition]="position.value"
+        matTooltipHideDelay="100">
+        Show Graph
+    </button>
+</div>

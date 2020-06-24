@@ -1,0 +1,31 @@
+<div>
+    <h3>Edit Product</h3>
+    <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">        
+        <div class="inputDiv">
+
+            <mat-form-field class="txtBox" appearance="standard">
+                <mat-label>Product ID</mat-label>
+                <input matInput type="number" name="productID" ngModel placeholder="Product ID">
+            </mat-form-field> <br> <br>
+    
+            <label for="returnable">Returnable</label>
+            <mat-checkbox name="returnable" [(ngModel)]="checkedR"></mat-checkbox> <br>
+    
+            <mat-form-field class="txtBox" appearance="standard">
+                <mat-label>Sell Price</mat-label>
+                <input matInput type="number" name="sellPrice" ngModel placeholder="Sell Price" step="0.01" min="0.01" max="999.99">
+                <span matPrefix>£ &nbsp;</span>
+            </mat-form-field>
+    
+            <mat-form-field class="txtBox" appearance="standard">
+                <mat-label>Discount</mat-label>
+                <input matInput type="number" name="discount" ngModel placeholder="Discount">
+            </mat-form-field><br><br>
+            
+        </div>
+
+        <div  class="request-themes">
+            <button mat-raised-button color="accent">Edit Product</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+/* .mat-elevation-z20 {
+    margin: auto;
+    width: 480px;
+    height: auto;
+} */
+
+.mat-elevation-z19 {
+    margin-top: 2%;
+    margin-left: 3%;
+    width: 220px;
+    height: auto;
+}
+
+#menu{
+    width: auto;
+    float: left;
+    margin-top: 150px;
+    margin-left: 20px;
+}
+
+#tabs-div{
+    /* max-width: 500px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-left: 410px; */
+    height: auto;
+    margin-top: 20px;
+    margin-left: 40px;
+    float: left;
+}
+
+#tables-div{
+    margin-top: 20px;
+    padding-left: 40px;
+    padding-bottom: 30px;
+    float: left;
+}
+
+@media only screen and (max-width: 768px){
+    #menu{
+        margin-top: 30px;
+        margin-left: 80px;
+    }
+    
+    #tabs-div{
+        margin-top: 20px;
+        padding-left: 0px;
+    }
+    
+    #tables-div{
+        margin-top: 30px;
+    }
+}
