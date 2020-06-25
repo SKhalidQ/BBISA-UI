@@ -1,9 +1,15 @@
-<div class="mat-elevation-z20">
+<div class="mat-elevation-z19" id="compDiv">
 
-    <mat-form-field class="searchBox">
-      <mat-label><mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>Search</mat-label>
+  <br>
+  <h1>Product List Table</h1>
+
+  <div class="searchField">
+    <mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Damm">
     </mat-form-field>
+  </div>
   
     <table mat-table class="mat-elevation-z20" [dataSource]="dataSource" matSort>
       
@@ -66,3 +72,4 @@
     </table>
     <mat-paginator class="paginator" [pageSizeOptions]="[5, 10]"></mat-paginator>
   </div>
+

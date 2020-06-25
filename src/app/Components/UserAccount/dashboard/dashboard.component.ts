@@ -1,3 +1,4 @@
+import { DashboardMenuComponent } from './../dashboard-menu/dashboard-menu.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  showComp2: boolean = false;
+
+  switches: string = "product";
+
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  hideShowComponent() {
+    
   }
 
 }

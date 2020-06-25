@@ -1,15 +1,11 @@
 <div class="mat-elevated-m8">
     <h4>Edit Inventory Items</h4>
-    <button mat-raised-button color="warn">Products</button>
+    <button mat-raised-button color="warn" (click)="buttonClick.emit('product')">Products</button>
     <br>
-    <button mat-raised-button color="warn" disabled>Orders
-        <span class="tooltiptext">Coming Soon</span>
-    </button>
+    <button mat-raised-button color="warn" (click)="buttonClick.emit('product')">Orders</button>
     
     <br>
-    <button mat-raised-button color="warn" disabled>Checkout
-        <span class="tooltiptext">Coming Soon</span>
-    </button>
+    <button mat-raised-button color="warn" (click)="buttonClick.emit('product')">Checkout</button>
     
     <mat-divider></mat-divider>
 

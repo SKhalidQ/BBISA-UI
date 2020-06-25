@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TooltipPosition } from '@angular/material/tooltip';
 
@@ -9,11 +9,19 @@ import { TooltipPosition } from '@angular/material/tooltip';
 })
 export class DashboardMenuComponent implements OnInit {
 
+  @Output() buttonClick = new EventEmitter<string>();
+  @Output() hideShow = false;
+
   position = new FormControl('below');
 
   constructor() { }
-
+  
   ngOnInit(): void {
+    
+  }
+
+  showHideComponent(){
+    this.hideShow = !this.hideShow;
   }
 
 }
