@@ -1,0 +1,19 @@
+h1 {
+  margin-top: 50px;
+  font-weight: 500;
+}
+
+h3 {
+  margin-top: 10px;
+}
+
+div {
+  margin-top: 100px;
+  text-align: center;
+}
+
+button {
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

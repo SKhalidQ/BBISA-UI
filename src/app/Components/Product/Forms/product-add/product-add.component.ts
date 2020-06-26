@@ -5,63 +5,64 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.css']
+  styleUrls: ['./product-add.component.css'],
 })
 export class ProductAddComponent implements OnInit {
-
   checkedA = false;
   checkedR = false;
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
 
-  constructor(private http:HttpClient, private _snackBar: MatSnackBar, private productService: ProductService) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService) {}
 
   myControl = new FormControl();
   options: string[] = ['Bottle', 'Can', 'Keg', 'Plastic'];
   filteredOptions: Observable<string[]>;
 
   onSubmit(data) {
+    this.validation(data);
 
-    this.http.post(this.defaultURL, data)
-    .subscribe((result)=>{
+    this.http.post(this.defaultURL, data).subscribe(
+      (result) => {
+        this._snackBar.open(result['value'].value, 'Dismiss', {
+          duration: 6000,
+          panelClass: ['success-snackbar'],
+        });
 
-      this._snackBar.open(result['value'].value, "Dismiss", {
-        duration: 6000,
-        panelClass: ['success-snackbar']
-      });
+        this.productService.redoGet.next();
+      },
+      (error) => {
+        var message = error.error['value'];
 
-      this.productService.redoGet.next();
-    },
-    error =>{
+        if (error.status == 400) {
+          message = 'Internal server error';
+        }
 
-      var message = error.error['value'];
-
-      if (error.status == 400){
-        message = "Internal server error";
+        this._snackBar.open(message, 'Dismiss', {
+          duration: 6000,
+          panelClass: ['fail-snackbar'],
+        });
       }
-      
-      this._snackBar.open(message, "Dismiss", {
-        duration: 6000,
-        panelClass: ['fail-snackbar']
-      });
+    );
+  }
 
-    })
-  } 
+  validation(data) {}
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value))
+      map((value) => this._filter(value))
     );
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter((option) => option.toLowerCase().indexOf(filterValue) === 0);
   }
 }

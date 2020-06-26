@@ -1,25 +1,37 @@
-.txtBox{
-    width: 180px;
+.txtBox {
+  width: 180px;
+  margin-bottom: -50px;
 }
 
-label{
-    margin-right: 10px;
+label {
+  margin-right: 10px;
 }
 
-div{
-    padding-top: 20px;
-    height: auto;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 20px;
-    margin-bottom: 10px;
+div {
+  padding-top: 20px;
+  height: auto;
+  width: 300px;
+  margin: auto;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.inputDiv{
-    margin-top: -40px;
+.span {
+  margin-top: 50px;
 }
 
-.request-themes{
-    margin-top: -50px;
+.inputDiv {
+  margin-top: -40px;
+}
+
+.request-themes {
+  margin-top: -20px;
+}
+
+.buttonSpace {
+  margin-left: 10px;
+}
+
+.tabGap {
+  height: 500px;
 }

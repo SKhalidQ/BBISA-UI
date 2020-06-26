@@ -2,12 +2,13 @@
   <!-- <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar> //When the get finishes, stop the progress bar  -->
 </section>
 
-<mat-sidenav-container > <!-- class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" -->
+<mat-sidenav-container>
+  <!-- class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" -->
 
-  <mat-sidenav #sideNav role="navigation" > <!--[mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" -->
+  <mat-sidenav #sideNav role="navigation">
+    <!--[mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" -->
     <!-- <mat-sidenav-container class="sideNavContainer" [style.marginTop.px]="mobileQuery.matches ? 56 : 0"></mat-sidenav-container> -->
-    <app-side-nav-list  (closeSNav)="sideNav.close()"></app-side-nav-list>
-
+    <app-side-nav-list (closeSNav)="sideNav.close()"></app-side-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -16,7 +17,5 @@
     <main>
       <router-outlet></router-outlet>
     </main>
-      
   </mat-sidenav-content>
-
 </mat-sidenav-container>

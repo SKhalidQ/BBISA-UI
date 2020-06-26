@@ -1,16 +1,16 @@
-<div>
-    <h3>Delete Product</h3>
-    <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
-        
-        <div class="inputDiv">
-            <mat-form-field class="txtBox"  appearance="standard">
-                <mat-label>Product ID</mat-label>
-                <input matInput type="number" name="productID" ngModel placeholder="Product ID">
-            </mat-form-field> <br><br>
-        </div>
-        
-        <div class="request-themes">
-            <button mat-raised-button color="warn">Delete Product</button>
-        </div>
-    </form>
+<div class="tabGap">
+  <h3>Delete Product</h3>
+  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+    <div class="inputDiv">
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Product ID</mat-label>
+        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+      </mat-form-field>
+      <br />
+    </div>
+
+    <div class="request-themes">
+      <button mat-raised-button color="warn"><mat-icon class="buttonIcon">delete</mat-icon>Delete Product</button>
+    </div>
+  </form>
 </div>

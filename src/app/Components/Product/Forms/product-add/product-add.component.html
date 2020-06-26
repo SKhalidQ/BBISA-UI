@@ -1,52 +1,55 @@
-<div>
-    <h3>Add Product</h3>
-    <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
-        
-        <div class="inputDiv">
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Brand</mat-label>
-                <input matInput type="text" name="Brand" ngModel placeholder="Brand">
-            </mat-form-field>
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Flavour</mat-label>
-                <input matInput  type="text" name="Flavour" ngModel placeholder="Flavour">
-            </mat-form-field> <br> <br>
-    
-            <label matInput for="alcoholic">Alcoholic</label>
-            <mat-checkbox color="primary" name="alcoholic" [(ngModel)]="checkedA"></mat-checkbox> <br>
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Container Type</mat-label>
-                <input matInput type="text" name="containerType" ngModel placeholder="Container Type" [matAutocomplete]="auto">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field> <br> <br>
-    
-            <label for="returnable">Returnable</label>
-            <mat-checkbox name="returnable" [(ngModel)]="checkedR"></mat-checkbox> <br>
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Stock Amount</mat-label>
-                <input matInput type="number" name="stockAmount" ngModel placeholder="Stock Amount">
-            </mat-form-field>
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label> £&nbsp;Sell Price</mat-label>
-                <input matInput type="number" name="sellPrice" ngModel placeholder="Sell Price" step="0.01" min="0.01" max="999.99">
-            </mat-form-field>
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Discount</mat-label>
-                <input matInput type="number" name="discount" ngModel placeholder="Discount">
-            </mat-form-field>
-        </div>
-        
-        <div class="request-themes">
-            <button mat-raised-button color="primary">Add Product</button>
-        </div>
-    </form>
+<div class="tabGap">
+  <h3>Add Product</h3>
+  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+    <div class="inputDiv">
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Brand</mat-label>
+        <input matInput type="text" name="Brand" ngModel placeholder="Brand" required /> </mat-form-field
+      ><br />
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Flavour</mat-label>
+        <input matInput type="text" name="Flavour" ngModel placeholder="Flavour" required />
+      </mat-form-field>
+      <br />
+      <br />
+
+      <label matInput for="alcoholic">Alcoholic</label>
+      <mat-checkbox color="primary" name="alcoholic" [(ngModel)]="checkedA"></mat-checkbox> <br />
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Container Type</mat-label>
+        <input matInput type="text" name="containerType" ngModel placeholder="Container Type" [matAutocomplete]="auto" required />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <br />
+      <br />
+
+      <label for="returnable">Returnable</label>
+      <mat-checkbox name="returnable" [(ngModel)]="checkedR"></mat-checkbox> <br />
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Stock Amount</mat-label>
+        <input matInput type="number" name="stockAmount" ngModel placeholder="Stock Amount" disabled />
+      </mat-form-field>
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label> £&nbsp;Sell Price</mat-label>
+        <input matInput type="number" name="sellPrice" ngModel placeholder="Sell Price" step="0.01" min="0.01" max="999.99" required />
+      </mat-form-field>
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Discount</mat-label>
+        <input matInput type="number" name="discount" ngModel placeholder="Discount" required />
+      </mat-form-field>
+    </div>
+
+    <div class="request-themes">
+      <button mat-raised-button color="primary"><mat-icon class="buttonIcon">add</mat-icon>Add Product</button>
+    </div>
+  </form>
 </div>

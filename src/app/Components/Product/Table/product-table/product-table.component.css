@@ -20,60 +20,60 @@
     width: 800px;
 } */
 
+#compDiv {
+  min-width: 800px;
+  max-width: 1000px;
+  min-height: 300px;
+  max-height: 783px;
+  padding-bottom: 10px;
+}
 
+h1 {
+  text-align: center;
+}
 
-#compDiv{
-    min-width: 800px;
-    max-width: 1000px;
-    min-height: 300px;
-    max-height: 783px;
-    padding-bottom: 10px;
-  }
-  
-  h1{
-    text-align: center;
-  }
-  
-  .searchField{
-    margin-left: 5%;
-    margin-right: 10px;
-    width: 95%;
-    text-align: center;
-  }
-  
-  .searchIcon {
-    font-size: 30px;
-    vertical-align: middle;
-    margin-right: 10px;
-  
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 90%;
-  }
-  
-  .full-width-table {
+.searchField {
+  margin-left: 5%;
+  margin-right: 10px;
+  width: 95%;
+  text-align: center;
+}
+
+.searchIcon {
+  font-size: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 90%;
+}
+
+.mat-elevation-z20 {
+  width: 95%;
+  margin: 25px auto;
+}
+
+td {
+  text-align: left;
+  font: menu;
+  border-right: medium;
+}
+
+th {
+  font: menu;
+  text-align: center;
+}
+
+.paginator {
+  width: 95%;
+  margin: 20px auto;
+}
+
+@media (max-width: 785px) {
+  .mat-elevation-z20 {
     width: 95%;
     margin: 25px auto;
   }
-
-  td {
-    text-align: center;
-  }
-
-  th {
-    text-align: center;
-  }
-  
-  .paginator{
-    width: 95%;
-    margin: 20px auto;
-  } 
-  
-  @media(max-width: 785px) {
-    .full-width-table {
-      width: 95%;
-      margin: 25px auto;
-    }
-  }
+}

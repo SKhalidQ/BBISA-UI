@@ -1,23 +1,21 @@
 <div class="postForm">
-    <mat-tab-group class="postForm" mat-align-tabs="center" animationDuration="0ms">
+  <mat-tab-group class="postForm" mat-align-tabs="center">
+    <mat-tab label="Add">
+      <br />
+      <br />
+      <app-order-add></app-order-add>
+    </mat-tab>
 
-        <mat-tab label="Add">
-            <br>
-            <br>
-            <app-order-add></app-order-add>
-        </mat-tab>
+    <mat-tab label="Edit">
+      <br />
+      <br />
+      <app-order-edit></app-order-edit>
+    </mat-tab>
 
-        <mat-tab label="Edit">
-            <br>
-            <br>
-            <app-order-edit></app-order-edit>
-        </mat-tab>
-        
-        <mat-tab label="Delete">
-            <br>
-            <br>
-            <app-order-delete></app-order-delete>
-        </mat-tab>
-
-    </mat-tab-group>
+    <mat-tab label="Delete">
+      <br />
+      <br />
+      <app-order-delete></app-order-delete>
+    </mat-tab>
+  </mat-tab-group>
 </div>

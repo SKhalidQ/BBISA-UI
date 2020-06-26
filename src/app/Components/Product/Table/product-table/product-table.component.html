@@ -1,75 +1,72 @@
 <div class="mat-elevation-z19" id="compDiv">
-
-  <br>
+  <br />
   <h1>Product List Table</h1>
 
   <div class="searchField">
     <mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>
     <mat-form-field>
       <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Damm">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Damm" />
     </mat-form-field>
   </div>
-  
-    <table mat-table class="mat-elevation-z20" [dataSource]="dataSource" matSort>
-      
-      <!-- OrderNo Column -->
-      <ng-container matColumnDef="productID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Product ID</th>
-        <td mat-cell *matCellDef="let product"> {{ product.productID }} </td>
-      </ng-container>
-      
-      <!-- Brand Column -->
-      <ng-container matColumnDef="brand">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
-        <td mat-cell *matCellDef="let product"> {{ product.brand }} </td>
-      </ng-container>
-    
-      <!-- Flavour Column -->
-      <ng-container matColumnDef="flavour">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Flavour</th>
-        <td mat-cell *matCellDef="let product"> {{ product.flavour }} </td>
-      </ng-container>
-    
-      <!-- Alcoholic Column -->
-      <ng-container matColumnDef="alcoholic">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Alcoholic</th>
-        <td mat-cell *matCellDef="let product"> {{ product.alcoholic | booleanValues }} </td>
-      </ng-container>
-    
-      <!-- Container Type Column -->
-      <ng-container matColumnDef="containerType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Container Type</th>
-        <td mat-cell *matCellDef="let product"> {{ product.containerType }} </td>
-      </ng-container>
-    
-      <!-- Returnable Column -->
-      <ng-container matColumnDef="returnable">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Returnable</th>
-        <td mat-cell *matCellDef="let product"> {{ product.returnable | booleanValues  }} </td>
-      </ng-container>
-    
-      <!-- Stock Column -->
-      <ng-container matColumnDef="stockAmount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Amount</th>
-        <td mat-cell *matCellDef="let product"> {{ product.stockAmount }} </td>
-      </ng-container>
-    
-      <!-- Price Column -->
-      <ng-container matColumnDef="sellPrice">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price</th>
-        <td mat-cell *matCellDef="let product"> {{ product.sellPrice | currency: '£' }} </td>
-      </ng-container>
-  
-      <!-- Discount Column -->
-      <ng-container matColumnDef="discount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
-        <td mat-cell *matCellDef="let product"> {{ product.discount }}</td>
-      </ng-container>
-        
-      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-      <tr mat-row *matRowDef="let product; columns: displayColumns;"></tr>
-    </table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10]"></mat-paginator>
-  </div>
 
+  <table mat-table class="mat-elevation-z20" [dataSource]="dataSource" matSort>
+    <!-- OrderNo Column -->
+    <ng-container matColumnDef="productID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product ID</th>
+      <td mat-cell *matCellDef="let product">{{ product.productID }}</td>
+    </ng-container>
+
+    <!-- Brand Column -->
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Brand</th>
+      <td mat-cell *matCellDef="let product">{{ product.brand }}</td>
+    </ng-container>
+
+    <!-- Flavour Column -->
+    <ng-container matColumnDef="flavour">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Flavour</th>
+      <td mat-cell *matCellDef="let product">{{ product.flavour }}</td>
+    </ng-container>
+
+    <!-- Alcoholic Column -->
+    <ng-container matColumnDef="alcoholic">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Alcoholic</th>
+      <td mat-cell *matCellDef="let product">{{ product.alcoholic | booleanValues }}</td>
+    </ng-container>
+
+    <!-- Container Type Column -->
+    <ng-container matColumnDef="containerType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Container Type</th>
+      <td mat-cell *matCellDef="let product">{{ product.containerType }}</td>
+    </ng-container>
+
+    <!-- Returnable Column -->
+    <ng-container matColumnDef="returnable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Returnable</th>
+      <td mat-cell *matCellDef="let product">{{ product.returnable | booleanValues }}</td>
+    </ng-container>
+
+    <!-- Stock Column -->
+    <ng-container matColumnDef="stockAmount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Amount</th>
+      <td mat-cell *matCellDef="let product">{{ product.stockAmount }}</td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="sellPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sell Price</th>
+      <td mat-cell *matCellDef="let product">{{ product.sellPrice | currency: "£" }}</td>
+    </ng-container>
+
+    <!-- Discount Column -->
+    <ng-container matColumnDef="discount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
+      <td mat-cell *matCellDef="let product">{{ product.discount }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let product; columns: displayColumns"></tr>
+  </table>
+  <mat-paginator class="paginator" [pageSizeOptions]="[5, 10]"></mat-paginator>
+</div>

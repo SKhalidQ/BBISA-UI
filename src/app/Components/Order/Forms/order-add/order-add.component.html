@@ -1,27 +1,26 @@
-<div>
-    <h3>Add Order</h3>
-    <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
-        
-        <div class="inputDiv">
-            <mat-form-field class="txtBox" appearance="legacy">
-                <mat-label>Product ID</mat-label>
-                <input matInput type="number" name="productID" ngModel placeholder="Product ID">
-            </mat-form-field>
-            
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Quantity Ordered</mat-label>
-                <input matInput type="number" name="quantityOrdered" ngModel placeholder="Quantity Ordered">
-            </mat-form-field>        
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Total Cost</mat-label>
-                <input matInput type="number" name="totalCost" ngModel placeholder="Total Cost" step="0.01" min="0.01" max="999.99">
-                <span matPrefix>£ &nbsp;</span>
-            </mat-form-field>
-        </div>
+<div class="tabGap">
+  <h3>Add Order</h3>
+  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+    <div class="inputDiv">
+      <mat-form-field class="txtBox" appearance="legacy">
+        <mat-label>Product ID</mat-label>
+        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+      </mat-form-field>
 
-        <div class="request-themes">
-            <button mat-raised-button color="primary"><mat-icon>add</mat-icon> Add Order</button>
-        </div>        
-    </form>
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Quantity Ordered</mat-label>
+        <input matInput type="number" name="quantityOrdered" ngModel placeholder="Quantity Ordered" required />
+      </mat-form-field>
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Total Cost</mat-label>
+        <input matInput type="number" name="totalCost" ngModel placeholder="Total Cost" step="0.01" min="0.01" max="999.99" required />
+        <span matPrefix>£ &nbsp;</span>
+      </mat-form-field>
+    </div>
+
+    <div class="request-themes">
+      <button mat-raised-button color="primary"><mat-icon class="buttonIcon">add</mat-icon>Add Order</button>
+    </div>
+  </form>
 </div>

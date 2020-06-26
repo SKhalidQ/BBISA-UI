@@ -1,45 +1,42 @@
-<div>
-    <h3>Buy Product</h3>
-    <form #productPost="ngForm">
-        <div class="inputDiv">
-    
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Product ID</mat-label>
-                <input matInput type="number" name="productID" ngModel placeholder="Product ID">
-            </mat-form-field>
-            
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Quantity Ordered</mat-label>
-                <input matInput type="number" name="quantity" ngModel placeholder="Quantity Ordered">
-            </mat-form-field> <br>
-            
-            <label for="discountApplied">Container Returned</label>
-            <mat-checkbox name="containerReturned" [(ngModel)]="checkedR"></mat-checkbox> <br>
-            
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Subtotal</mat-label>
-                <input matInput type="number" name="totalCost" [(ngModel)]="totalCost" placeholder="Subtotal" readonly>
-                <span matPrefix>£ &nbsp;</span>
-            </mat-form-field>
-            
-            <mat-form-field class="txtBox" appearance="standard">
-                <mat-label>Pay</mat-label>
-                <input matInput type="number" name="payed" ngModel placeholder="Pay">
-                <span matPrefix>£ &nbsp;</span>
-            </mat-form-field> <br>
+<div class="tabGap">
+  <h3>Buy Product</h3>
+  <form #productPost="ngForm">
+    <div class="inputDiv">
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Product ID</mat-label>
+        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+      </mat-form-field>
 
-        </div>
-        
-        <div class="request-themes">
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Quantity Ordered</mat-label>
+        <input matInput type="number" name="quantity" ngModel placeholder="Quantity Ordered" required />
+      </mat-form-field>
+      <br />
+      <br />
 
-            <button mat-fab color="accent" (click)="getSubtotal(productPost.value)" aria-label="Example icon button with a delete icon">
-                <mat-icon>system_update_alt</mat-icon>
-            </button>
-    
-            <button mat-fab color="primary" (click)="onSubmit(productPost.value)" aria-label="Example icon button with a delete icon">
-                <mat-icon>add</mat-icon>
-            </button>
+      <label for="discountApplied">Container Returned</label>
+      <mat-checkbox name="containerReturned" [(ngModel)]="checkedR"></mat-checkbox> <br />
 
-        </div>
-    </form> 
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Subtotal</mat-label>
+        <input matInput type="number" name="totalCost" [(ngModel)]="totalCost" placeholder="Subtotal" readonly required />
+        <span matPrefix>£ &nbsp;</span>
+      </mat-form-field>
+
+      <mat-form-field class="txtBox" appearance="standard">
+        <mat-label>Pay</mat-label>
+        <input matInput type="number" name="payed" ngModel placeholder="Pay" required />
+        <span matPrefix>£ &nbsp;</span>
+      </mat-form-field>
+      <br />
+    </div>
+
+    <div class="request-themes">
+      <button mat-raised-button color="accent" (click)="getSubtotal(productPost.value)">
+        <mat-icon class="buttonIcon">system_update_alt</mat-icon>Subtotal
+      </button>
+      <span class="buttonSpace"></span>
+      <button mat-raised-button color="primary" (click)="onSubmit(productPost.value)"><mat-icon class="buttonIcon">add</mat-icon>Add Sell</button>
+    </div>
+  </form>
 </div>

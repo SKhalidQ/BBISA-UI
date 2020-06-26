@@ -4,35 +4,36 @@ import { DataSource } from '@angular/cdk/table';
 import { GETSell } from 'src/app/Models/sell.model';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-sell-table',
   templateUrl: './sell-table.component.html',
-  styleUrls: ['./sell-table.component.css']
+  styleUrls: ['./sell-table.component.css'],
 })
 export class SellTableComponent implements OnInit {
-
   displayColumns = ['sellID', 'quantity', 'totalCost', 'containerReturned', 'sellDate', 'productID'];
   dataSource: MatTableDataSource<GETSell>;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private sellService: SellService) { }
+  constructor(private sellService: SellService) {}
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
     this.dataSource = new MatTableDataSource<GETSell>();
     this.fillTable();
 
-    this.sellService.redoGet.subscribe(() =>{
+    this.sellService.redoGet.subscribe(() => {
       this.dataSource = new MatTableDataSource<GETSell>();
       this.fillTable();
     });
   }
 
-  fillTable(){
+  fillTable() {
     this.dataSource.paginator = this.paginator;
-    this.sellService.getSellList().subscribe(products => {
+    this.sellService.getSellList().subscribe((products) => {
       this.dataSource.data = products;
     });
   }
@@ -50,16 +51,14 @@ export class SellTableComponent implements OnInit {
     // return this.sellService
     // return this.dataSource.map(t => t.cost).reduce((acc, value) => acc + value, 0);
   }
-
 }
 
-export class SellDataSource extends DataSource<any>{
-
+export class SellDataSource extends DataSource<any> {
   constructor(private sellService: SellService) {
     super();
   }
 
-  connect(): Observable<GETSell[]>{
+  connect(): Observable<GETSell[]> {
     return this.sellService.getSellList();
   }
 

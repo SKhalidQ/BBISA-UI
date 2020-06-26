@@ -1,40 +1,43 @@
-<div class="mat-elevation-z20">
+<div class="mat-elevation-z19" id="compDiv">
+  <br />
+  <h1>Order List Table</h1>
 
-    <mat-form-field class="searchBox">
-        <mat-label><mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 19/06/2020">
+  <div class="searchField">
+    <mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Damm" />
     </mat-form-field>
+  </div>
 
-    <mat-table [dataSource]="dataSource">
-
+  <table mat-table class="mat-elevation-z20" [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="orderID">
-        <mat-header-cell *matHeaderCellDef>Order ID</mat-header-cell>
-        <mat-cell *matCellDef="let order"> {{ order.orderID }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</th>
+      <td mat-cell *matCellDef="let order">{{ order.orderID }}</td>
     </ng-container>
 
     <ng-container matColumnDef="quantityOrdered">
-        <mat-header-cell *matHeaderCellDef>Quantity Ordered</mat-header-cell>
-        <mat-cell *matCellDef="let order"> {{ order.quantityOrdered }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity Ordered</th>
+      <td mat-cell *matCellDef="let order">{{ order.quantityOrdered }}</td>
     </ng-container>
-    
+
     <ng-container matColumnDef="totalCost">
-        <mat-header-cell *matHeaderCellDef>Total Cost</mat-header-cell>
-        <mat-cell *matCellDef="let order"> {{ order.totalCost | currency: '£' }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</th>
+      <td mat-cell *matCellDef="let order">{{ order.totalCost | currency: "£" }}</td>
     </ng-container>
 
     <ng-container matColumnDef="orderDate">
-        <mat-header-cell *matHeaderCellDef>Order Date</mat-header-cell>
-        <mat-cell *matCellDef="let order"> {{ order.orderDate | date: 'dd/MM/yyyy' }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Order Date</th>
+      <td mat-cell *matCellDef="let order">{{ order.orderDate | date: "dd/MM/yyyy" }}</td>
     </ng-container>
 
     <ng-container matColumnDef="productID">
-        <mat-header-cell *matHeaderCellDef>Product ID</mat-header-cell>
-        <mat-cell *matCellDef="let order"> {{ order.product.productID }} </mat-cell>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Product ID</th>
+      <td mat-cell *matCellDef="let order">{{ order.product.productID }}</td>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
-
-    </mat-table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10]"></mat-paginator>
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let order; columns: displayColumns"></tr>
+  </table>
+  <mat-paginator class="paginator" [pageSizeOptions]="[5, 10]"></mat-paginator>
 </div>

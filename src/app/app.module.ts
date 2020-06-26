@@ -20,7 +20,6 @@ import { LogInComponent } from './Components/log-in/log-in.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { SideNavListComponent } from './Components/Navigation/side-nav-list/side-nav-list.component';
 import { HeaderComponent } from './Components/Navigation/header/header.component';
-import { DashboardComponent } from './Components/UserAccount/dashboard/dashboard.component';
 import { ProductTableComponent } from './Components/Product/Table/product-table/product-table.component';
 import { ProductAddComponent } from './Components/Product/Forms/product-add/product-add.component';
 import { ProductEditComponent } from './Components/Product/Forms/product-edit/product-edit.component';
@@ -37,6 +36,7 @@ import { ProductTabsComponent } from './Components/Product/Forms/product-tabs/pr
 import { OrderTabsComponent } from './Components/Order/Forms/order-tabs/order-tabs.component';
 import { OrderEditComponent } from './Components/Order/Forms/order-edit/order-edit.component';
 import { DashboardMenuComponent } from './Components/UserAccount/dashboard-menu/dashboard-menu.component';
+import { DashboardComponent } from './Components/UserAccount/dashboard/dashboard.component';
 
 //Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -78,7 +78,10 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatCardModule } from '@angular/material/card';
 
 import { LayoutModule } from '@angular/cdk/layout';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProductsComponent } from './Components/Product/products/products.component';
+import { SellsComponent } from './Components/Sell/sells/sells.component';
+import { OrdersComponent } from './Components/Order/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,6 @@ import { LayoutModule } from '@angular/cdk/layout';
     SignUpComponent,
     HeaderComponent,
     SideNavListComponent,
-    DashboardComponent,
     ProductTableComponent,
     ProductAddComponent,
     ProductEditComponent,
@@ -106,6 +108,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     BooleanValuesPipe,
     OrderEditComponent,
     DashboardMenuComponent,
+    DashboardComponent,
+    ProductsComponent,
+    SellsComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,9 +155,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatTabsModule,
     MatPaginatorModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    FlexLayoutModule,
   ],
   providers: [ProductService, OrderService, SellService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
