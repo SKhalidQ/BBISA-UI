@@ -1,7 +1,7 @@
 import { SellService } from './../../../../Services/Sell/sell.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
-import { GETSell } from 'src/app/Models/sell.model';
+import { GetSell } from 'src/app/Models/sell.model';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -14,20 +14,24 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./sell-table.component.css'],
 })
 export class SellTableComponent implements OnInit {
-  displayColumns = ['sellID', 'quantity', 'totalCost', 'containerReturned', 'sellDate', 'productID'];
-  dataSource: MatTableDataSource<GETSell>;
+  displayColumns = ['sellID', 'quantity', 'totalCost', 'containerReturned', 'payed', 'sellDate', 'productID'];
+  dataSource: MatTableDataSource<GetSell>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  selection = new SelectionModel<GetSell>(true, []);
 
   constructor(private sellService: SellService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GETSell>();
+    this.dataSource = new MatTableDataSource<GetSell>();
     this.fillTable();
+    this.dataSource.sort = this.sort;
 
     this.sellService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GETSell>();
+      this.dataSource = new MatTableDataSource<GetSell>();
       this.fillTable();
+      this.dataSource.sort = this.sort;
     });
   }
 
@@ -58,7 +62,7 @@ export class SellDataSource extends DataSource<any> {
     super();
   }
 
-  connect(): Observable<GETSell[]> {
+  connect(): Observable<GetSell[]> {
     return this.sellService.getSellList();
   }
 

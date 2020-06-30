@@ -1,4 +1,5 @@
-import { GETOrder } from './../../../../Models/order.model';
+import { MatSort } from '@angular/material/sort';
+import { GetOrder } from './../../../../Models/order.model';
 import { OrderService } from './../../../../Services/Order/order.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
@@ -9,30 +10,32 @@ import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-order-table',
   templateUrl: './order-table.component.html',
-  styleUrls: ['./order-table.component.css']
+  styleUrls: ['./order-table.component.css'],
 })
 export class OrderTableComponent implements OnInit {
-
   displayColumns = ['orderID', 'quantityOrdered', 'totalCost', 'orderDate', 'productID'];
-  dataSource: MatTableDataSource<GETOrder>;
+  dataSource: MatTableDataSource<GetOrder>;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GETOrder>();
+    this.dataSource = new MatTableDataSource<GetOrder>();
     this.fillTable();
+    this.dataSource.sort = this.sort;
 
-    this.orderService.redoGet.subscribe(() =>{
-      this.dataSource = new MatTableDataSource<GETOrder>();
+    this.orderService.redoGet.subscribe(() => {
+      this.dataSource = new MatTableDataSource<GetOrder>();
       this.fillTable();
+      this.dataSource.sort = this.sort;
     });
   }
 
-  fillTable(){
+  fillTable() {
     this.dataSource.paginator = this.paginator;
-    this.orderService.getOrderList().subscribe(orders => {
+    this.orderService.getOrderList().subscribe((orders) => {
       this.dataSource.data = orders;
     });
   }
@@ -45,16 +48,14 @@ export class OrderTableComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
 }
 
-export class OrderDataSource extends DataSource<any>{
-
+export class OrderDataSource extends DataSource<any> {
   constructor(private orderService: OrderService) {
     super();
   }
 
-  connect(): Observable<GETOrder[]>{
+  connect(): Observable<GetOrder[]> {
     return this.orderService.getOrderList();
   }
 

@@ -1,10 +1,33 @@
-.txtBox {
-  width: 180px;
-  margin-bottom: -50px;
+.fs-title {
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  margin-bottom: 1px;
+}
+
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: rgb(180, 172, 172);
+  margin-bottom: 20px;
 }
 
 label {
   margin-right: 10px;
+}
+
+.txtBox {
+  width: 180px;
+  margin-bottom: -20px;
+}
+
+mat-error {
+  text-align: right;
+}
+
+.checkBox {
+  margin-top: 5px;
+  margin-bottom: -25px;
+  padding-bottom: -25px;
 }
 
 div {
@@ -29,5 +52,6 @@ div {
 }
 
 .tabGap {
-  height: 500px;
+  height: 700px;
+  margin-top: -45px;
 }

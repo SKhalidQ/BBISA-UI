@@ -1,10 +1,12 @@
 <div class="tabGap">
-  <h3>Delete Product</h3>
-  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+  <h3 class="fs-title">Delete Product</h3>
+  <h3 class="fs-subtitle">Enter ID to delete a product</h3>
+  <form [formGroup]="deleteProduct" (ngSubmit)="onSubmit()">
     <div class="inputDiv">
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Product ID</mat-label>
-        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+        <input matInput type="number" formControlName="productID" placeholder="Product ID" required />
+        <mat-error *ngIf="validateField('productID').invalid">{{ getErrorMessage("productID") }}</mat-error>
       </mat-form-field>
       <br />
     </div>

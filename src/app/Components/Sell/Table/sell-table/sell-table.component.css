@@ -33,9 +33,9 @@ h1 {
 }
 
 .searchField {
-  margin-left: 5%;
+  margin-left: 20px;
   margin-right: 10px;
-  width: 95%;
+  width: 50%;
   text-align: center;
 }
 
@@ -64,11 +64,6 @@ td {
 th {
   font: menu;
   text-align: center;
-}
-
-.paginator {
-  width: 95%;
-  margin: 20px auto;
 }
 
 @media (max-width: 785px) {

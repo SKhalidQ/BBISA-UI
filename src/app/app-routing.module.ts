@@ -1,3 +1,4 @@
+import { PubProductTableComponent } from './Components/Public/Tables/pub-product-table/pub-product-table.component';
 import { SellsComponent } from './Components/Sell/sells/sells.component';
 import { OrdersComponent } from './Components/Order/orders/orders.component';
 import { ProductsComponent } from './Components/Product/products/products.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'LogIn', component: LogInComponent },
   { path: 'SignUp', component: SignUpComponent },
+  { path: 'Products', component: PubProductTableComponent },
   {
     path: 'Dashboard',
     component: DashboardComponent,

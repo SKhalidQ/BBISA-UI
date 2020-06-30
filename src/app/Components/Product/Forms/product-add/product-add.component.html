@@ -1,50 +1,58 @@
 <div class="tabGap">
-  <h3>Add Product</h3>
-  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+  <h3 class="fs-title">Add Product</h3>
+  <h3 class="fs-subtitle">Enter details to add a product</h3>
+  <form [formGroup]="postProduct" (ngSubmit)="onSubmit()">
     <div class="inputDiv">
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Brand</mat-label>
-        <input matInput type="text" name="Brand" ngModel placeholder="Brand" required /> </mat-form-field
+        <input matInput formControlName="brand" type="text" placeholder="Brand" required />
+        <mat-error *ngIf="validateField('brand').invalid">{{ getErrorMessage("brand") }}</mat-error> </mat-form-field
       ><br />
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Flavour</mat-label>
-        <input matInput type="text" name="Flavour" ngModel placeholder="Flavour" required />
+        <input matInput type="text" formControlName="flavour" placeholder="Flavour" required />
+        <mat-error *ngIf="validateField('flavour').invalid">{{ getErrorMessage("flavour") }}</mat-error>
       </mat-form-field>
-      <br />
-      <br />
 
-      <label matInput for="alcoholic">Alcoholic</label>
-      <mat-checkbox color="primary" name="alcoholic" [(ngModel)]="checkedA"></mat-checkbox> <br />
+      <div class="checkBox">
+        <label matInput for="alcoholic">Alcoholic</label>
+        <mat-checkbox color="primary" formControlName="alcoholic"></mat-checkbox>
+      </div>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Container Type</mat-label>
-        <input matInput type="text" name="containerType" ngModel placeholder="Container Type" [matAutocomplete]="auto" required />
+        <input matInput type="text" formControlName="containerType" placeholder="Container Type" [matAutocomplete]="auto" required />
+        <mat-error *ngIf="validateField('containerType').invalid">{{ getErrorMessage("containerType") }}</mat-error>
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{ option }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <br />
-      <br />
 
-      <label for="returnable">Returnable</label>
-      <mat-checkbox name="returnable" [(ngModel)]="checkedR"></mat-checkbox> <br />
+      <div class="checkBox">
+        <label for="returnable">Returnable</label>
+        <mat-checkbox color="primary" formControlName="returnable"></mat-checkbox><br />
+      </div>
 
       <mat-form-field class="txtBox" appearance="standard">
-        <mat-label>Stock Amount</mat-label>
-        <input matInput type="number" name="stockAmount" ngModel placeholder="Stock Amount" disabled />
+        <mat-label>Sell Price</mat-label>
+        <input matInput type="number" formControlName="sellPrice" placeholder="Sell Price" step="0.01" min="0.01" max="20" required />
+        <span matPrefix>£&nbsp;</span>
+        <mat-error *ngIf="validateField('sellPrice').invalid">{{ getErrorMessage("sellPrice") }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="txtBox" appearance="standard">
-        <mat-label> £&nbsp;Sell Price</mat-label>
-        <input matInput type="number" name="sellPrice" ngModel placeholder="Sell Price" step="0.01" min="0.01" max="999.99" required />
-      </mat-form-field>
+      <div class="checkBox">
+        <label for="showDiscBox">Discount</label>
+        <mat-checkbox name="showDiscBox" (change)="onShowDiscount($event)"></mat-checkbox><br />
+      </div>
 
-      <mat-form-field class="txtBox" appearance="standard">
+      <mat-form-field *ngIf="showDiscountBox" class="txtBox" appearance="standard">
         <mat-label>Discount</mat-label>
-        <input matInput type="number" name="discount" ngModel placeholder="Discount" required />
+        <input matInput type="number" formControlName="discount" placeholder="Discount" />
+        <span matSuffix>%&nbsp;</span>
+        <mat-error *ngIf="validateField('discount').invalid">{{ getErrorMessage("discount") }}</mat-error>
       </mat-form-field>
     </div>
 

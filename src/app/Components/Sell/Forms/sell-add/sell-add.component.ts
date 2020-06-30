@@ -4,114 +4,146 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sell-add',
   templateUrl: './sell-add.component.html',
-  styleUrls: ['./sell-add.component.css']
+  styleUrls: ['./sell-add.component.css'],
 })
 export class SellAddComponent implements OnInit {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService) {}
 
   checkedR = false;
 
-  constructor(
-    private http:HttpClient, 
-    private _snackBar: MatSnackBar, 
-    private sellService: SellService, 
-    private productService: ProductService
-  ) { }
+  enableSubtotalBox = false;
+  enablePayBox = false;
+  enableChangeBox = false;
+  disablePurchaseButton = true;
 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
   totalCost: number;
+  changeDue: number;
 
   private defaultGetURL = 'https://bbisa.azurewebsites.net/api/Sell/GetSubTotalSell?';
   private defaultPostURL = 'https://bbisa.azurewebsites.net/api/Sell/AddSell?ProductID=';
 
-  getSubtotal(data) {
+  postSell = new FormGroup({
+    productID: new FormControl('', [Validators.required, Validators.min(1)]),
+    quantity: new FormControl('', [Validators.required, Validators.min(1), Validators.max(999)]),
+    containerReturned: new FormControl(false),
+    totalCost: new FormControl('', [Validators.required, Validators.min(0.01)]),
+    payed: new FormControl('', [Validators.required, Validators.min(0.0), Validators.max(999.99)]),
+  });
 
-    var url = this.defaultGetURL + 
-    "ProductID=" + data['productID'] + 
-    "&Quantity=" + data['quantity'] + 
-    "&ContainerReturned=" + data['containerReturned'];
+  ngOnInit() {}
 
-    this.http.get(url).subscribe((result) =>{
+  //#region Get & Post Request
+  getSubtotal() {
+    var url =
+      this.defaultGetURL +
+      'ProductID=' +
+      this.postSell.value['productID'] +
+      '&Quantity=' +
+      this.postSell.value['quantity'] +
+      '&ContainerReturned=' +
+      this.postSell.value['containerReturned'];
 
-      this._snackBar.open("Subtotal: £" + result['value'], "Dismiss", {
-        duration: 4000,
-        panelClass: ['success-snackbar']
-      });
+    this.http.get(url).subscribe(
+      (result) => {
+        this._snackBar.open('Subtotal: £ ' + result['value'], 'Dismiss', {
+          duration: 4000,
+          panelClass: ['success-snackbar'],
+        });
 
-      this.totalCost = result['value'];
-      url = this.defaultGetURL
+        this.enableChangeBox = false;
+        this.enablePayBox = true;
+        this.enableSubtotalBox = true;
+        this.disablePurchaseButton = false;
 
-    },
-    (error) =>{
+        this.totalCost = result['value'].toFixed(2);
+        url = this.defaultGetURL;
+      },
+      (error) => {
+        var message = error.error['value'];
 
-      var message = error.error['value'];
+        if (error.status == 400) {
+          message = 'One ore more validation errors';
+        }
 
-      if (error.status == 400){
-        message = "Internal server error";
+        this._snackBar.open(message, 'Dismiss', {
+          duration: 6000,
+          panelClass: ['fail-snackbar'],
+        });
+
+        this.enablePayBox = false;
+        this.enableSubtotalBox = false;
+        this.disablePurchaseButton = true;
+
+        url = this.defaultGetURL;
       }
-      
-      this._snackBar.open(message, "Dismiss", {
-        duration: 6000,
-        panelClass: ['fail-snackbar']
-      });
-
-      url = this.defaultGetURL;
-
-    });
+    );
   }
 
-  onSubmit(data) {
+  onSubmit() {
+    var url = this.defaultPostURL + this.postSell.value['productID'];
 
-    var url = this.defaultPostURL + data['productID'];
-
-    if (data["totalCost"] == "0"){
-      data["totalCost"] = 0;
-    } 
-    else if (data["totalCost"] == "" || data["totalCost"] == null){
-      data["totalCost"] = -1;
+    if (this.postSell.value['totalCost'] == '0') {
+      this.postSell.value['totalCost'] = 0;
+    } else if (this.postSell.value['totalCost'] == '' || this.postSell.value['totalCost'] == null) {
+      this.postSell.value['totalCost'] = -1;
     }
 
-    this.http.post(url, data)
-    .subscribe((result)=>{
+    this.http.post(url, this.postSell.value).subscribe(
+      (result) => {
+        this._snackBar.open('Purchase successful', 'Dismiss', {
+          duration: 6000,
+          panelClass: ['success-snackbar'],
+        });
 
-      this._snackBar.open(result['value'], "Dismiss", {
-        duration: 6000,
-        panelClass: ['success-snackbar']
-      });
+        this.changeDue = result['value'].toFixed(2);
 
-      this.sellService.redoGet.next();
-      this.productService.redoGet.next();
-      url = this.defaultPostURL;
-      
-    },
-    error =>{
+        this.enableChangeBox = true;
+        this.sellService.redoGet.next();
+        this.productService.redoGet.next();
+        url = this.defaultPostURL;
+      },
+      (error) => {
+        var message = error.error['value'];
 
-      var message = error.error['value'];
+        if (error.status == 400) {
+          message = 'One ore more validation errors';
+        }
 
-      if (error.status == 400){
-        message = "Internal server error";
+        this._snackBar.open(message, 'Dismiss', {
+          duration: 6000,
+          panelClass: ['fail-snackbar'],
+        });
+
+        url = this.defaultPostURL;
       }
-      
+    );
+  }
+  //#endregion
 
-      this._snackBar.open(message, "Dismiss", {
-        duration: 6000,
-        panelClass: ['fail-snackbar']
-      });
+  //#region Validation
+  getErrorMessage(fieldName: string) {
+    var field = this.postSell.get(fieldName);
+    var required = 'Field is required';
+    var maxLength = fieldName + ' has hit its max length';
 
-      url = this.defaultPostURL;
+    if (field.hasError('required')) return required;
 
-    });
+    // if (field.hasError('max')) return maxLength;
+
+    return 'Error in validation';
   }
 
-  ngOnInit(){
-
+  validateField(fieldName: string) {
+    return this.postSell.get(fieldName);
   }
-
+  //#endregion
 }

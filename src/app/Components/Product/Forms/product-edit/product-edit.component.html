@@ -1,25 +1,28 @@
 <div class="tabGap">
-  <h3>Edit Product</h3>
-  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+  <h3 class="fs-title">Edit Product</h3>
+  <h3 class="fs-subtitle">Enter ID and detail to change product information</h3>
+  <form [formGroup]="editProduct" (ngSubmit)="onSubmit()">
     <div class="inputDiv">
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Product ID</mat-label>
-        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+        <input matInput type="number" formControlName="productID" placeholder="Product ID" required />
+        <mat-error *ngIf="validateField('productID').invalid">{{ getErrorMessage("productID") }}</mat-error>
       </mat-form-field>
-      <br /><br />
 
-      <label for="returnable">Returnable</label>
-      <mat-checkbox name="returnable" [(ngModel)]="checkedR"></mat-checkbox> <br />
+      <div class="checkBox">
+        <label for="returnable">Returnable</label>
+        <mat-checkbox formControlName="returnable"></mat-checkbox>
+      </div>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Sell Price</mat-label>
-        <input matInput type="number" name="sellPrice" ngModel placeholder="Sell Price" step="0.01" min="0.01" max="999.99" />
-        <span matPrefix>£ &nbsp;</span>
+        <input matInput type="number" formControlName="sellPrice" placeholder="Sell Price" step="0.01" min="0.01" max="20" />
+        <span matPrefix>£&nbsp;</span>
       </mat-form-field>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Discount</mat-label>
-        <input matInput type="number" name="discount" ngModel placeholder="Discount" /> </mat-form-field
+        <input matInput type="number" formControlName="discount" placeholder="Discount" /> </mat-form-field
       ><br /><br />
     </div>
 

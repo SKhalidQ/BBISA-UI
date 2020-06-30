@@ -1,5 +1,6 @@
 <section>
-  <!-- <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar> //When the get finishes, stop the progress bar  -->
+  <span>{{ progBarService.runProgressBar.value }}</span>
+  <mat-progress-bar color="warn" mode="indeterminate" *ngIf="progBarService.progressBarLoading$ | async"></mat-progress-bar>
 </section>
 
 <mat-sidenav-container>

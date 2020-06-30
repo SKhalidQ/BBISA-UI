@@ -82,6 +82,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductsComponent } from './Components/Product/products/products.component';
 import { SellsComponent } from './Components/Sell/sells/sells.component';
 import { OrdersComponent } from './Components/Order/orders/orders.component';
+import { PubProductTableComponent } from './Components/Public/Tables/pub-product-table/pub-product-table.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,7 @@ import { OrdersComponent } from './Components/Order/orders/orders.component';
     ProductsComponent,
     SellsComponent,
     OrdersComponent,
+    PubProductTableComponent,
   ],
   imports: [
     BrowserModule,

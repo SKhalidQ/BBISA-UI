@@ -1,21 +1,25 @@
 <div class="tabGap">
-  <h3>Add Order</h3>
-  <form #productPost="ngForm" (ngSubmit)="onSubmit(productPost.value)">
+  <h3 class="fs-title">Add Order</h3>
+  <h3 class="fs-subtitle">Enter details to add an order</h3>
+  <form [formGroup]="addOrder" (ngSubmit)="onSubmit()">
     <div class="inputDiv">
-      <mat-form-field class="txtBox" appearance="legacy">
+      <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Product ID</mat-label>
-        <input matInput type="number" name="productID" ngModel placeholder="Product ID" required />
+        <input matInput type="number" formControlName="productID" placeholder="Product ID" min="1" required />
+        <mat-error *ngIf="validateField('productID').invalid">{{ getErrorMessage("productID") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Quantity Ordered</mat-label>
-        <input matInput type="number" name="quantityOrdered" ngModel placeholder="Quantity Ordered" required />
+        <input matInput type="number" formControlName="quantityOrdered" placeholder="Quantity Ordered" min="1" max="999" required />
+        <mat-error *ngIf="validateField('quantityOrdered').invalid">{{ getErrorMessage("quantityOrdered") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Total Cost</mat-label>
-        <input matInput type="number" name="totalCost" ngModel placeholder="Total Cost" step="0.01" min="0.01" max="999.99" required />
+        <input matInput type="number" formControlName="totalCost" placeholder="Total Cost" step="0.01" min="0.01" max="999.99" required />
         <span matPrefix>£ &nbsp;</span>
+        <mat-error *ngIf="validateField('totalCost').invalid">{{ getErrorMessage("totalCost") }}</mat-error>
       </mat-form-field>
     </div>
 

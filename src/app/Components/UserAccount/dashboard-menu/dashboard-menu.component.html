@@ -26,7 +26,18 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="warn" matTooltip="Info about the action" class="tooltip" matTooltip="Coming Soon" [matTooltipPosition]="position.value" matTooltipHideDelay="100" disabled>
+  <button
+    mat-raised-button
+    color="warn"
+    matTooltip="Info about the action"
+    class="tooltip"
+    matTooltip="Coming Soon"
+    [matTooltipPosition]="position.value"
+    matTooltipHideDelay="100"
+    disabled
+  >
     Show Graph
   </button>
+
+  <button mat-raised-button color="warn" class="tooltip" (click)="resetDatabase()">Reset API</button>
 </div>

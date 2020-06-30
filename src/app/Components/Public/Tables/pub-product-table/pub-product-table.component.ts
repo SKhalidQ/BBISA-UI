@@ -1,22 +1,22 @@
-import { GetProduct } from './../../../../Models/product.model';
-import { ProductService } from './../../../../Services/Product/product.service';
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
-import { MatTableDataSource } from '@angular/material/table';
+import { ProductService } from './../../../../Services/Product/product.service';
 import { MatSort } from '@angular/material/sort';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+import { GetPubProduct } from './../../../../Models/product.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-product-table',
-  templateUrl: './product-table.component.html',
-  styleUrls: ['./product-table.component.css'],
+  selector: 'app-pub-product-table',
+  templateUrl: './pub-product-table.component.html',
+  styleUrls: ['./pub-product-table.component.css'],
 })
-export class ProductTableComponent implements OnInit {
-  displayColumns = ['productID', 'brand', 'flavour', 'alcoholic', 'containerType', 'returnable', 'stockAmount', 'sellPrice', 'discount'];
-  dataSource: MatTableDataSource<GetProduct>;
-  selection = new SelectionModel<GetProduct>(true, []);
+export class PubProductTableComponent implements OnInit {
+  displayColumns = ['brand', 'flavour', 'alcoholic', 'containerType', 'returnable', 'stockAmount', 'sellPrice', 'discount'];
+  dataSource: MatTableDataSource<GetPubProduct>;
+  selection = new SelectionModel<GetPubProduct>(true, []);
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -24,12 +24,12 @@ export class ProductTableComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GetProduct>();
+    this.dataSource = new MatTableDataSource<GetPubProduct>();
     this.fillTable();
     this.dataSource.sort = this.sort;
 
     this.productService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GetProduct>();
+      this.dataSource = new MatTableDataSource<GetPubProduct>();
       this.fillTable();
       this.dataSource.sort = this.sort;
     });
@@ -57,7 +57,7 @@ export class ProductDataSource extends DataSource<any> {
     super();
   }
 
-  connect(): Observable<GetProduct[]> {
+  connect(): Observable<GetPubProduct[]> {
     return this.productService.getProductList();
   }
 
