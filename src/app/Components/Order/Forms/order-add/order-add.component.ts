@@ -1,4 +1,4 @@
-import { ProgressBarService } from './../../../../Services/progress-bar.service';
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { OrderService } from './../../../../Services/Order/order.service';
 import { Component, OnInit } from '@angular/core';
@@ -30,7 +30,7 @@ export class OrderAddComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //#region
+  //#region Post Request
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
@@ -52,7 +52,7 @@ export class OrderAddComponent implements OnInit {
         var message = error.error['value'];
 
         if (error.status == 400) {
-          message = 'One ore more validation errors';
+          message = 'One or more validation errors';
         }
 
         this._snackBar.open(message, 'Dismiss', {

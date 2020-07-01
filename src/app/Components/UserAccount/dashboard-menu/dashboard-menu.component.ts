@@ -1,3 +1,4 @@
+import { ProgressBarService } from './../../../Services/Progress Bar/progress-bar.service';
 import { SellService } from './../../../Services/Sell/sell.service';
 import { OrderService } from './../../../Services/Order/order.service';
 import { ProductService } from './../../../Services/Product/product.service';
@@ -23,7 +24,8 @@ export class DashboardMenuComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private productService: ProductService,
     private orderService: OrderService,
-    private sellService: SellService
+    private sellService: SellService,
+    private progBarService: ProgressBarService
   ) {}
 
   ngOnInit(): void {}
@@ -33,6 +35,8 @@ export class DashboardMenuComponent implements OnInit {
   }
 
   resetDatabase() {
+    this.progBarService.runProgressBar.next(true);
+
     var url = 'https://bbisa.azurewebsites.net/api/Status/ClearDatabase';
 
     this.http.options(url).subscribe(
@@ -46,6 +50,7 @@ export class DashboardMenuComponent implements OnInit {
         this.productService.redoGet.next();
         this.orderService.redoGet.next();
         this.sellService.redoGet.next();
+        this.progBarService.runProgressBar.next(false);
       },
       (error) => {
         var message = error.error['value'];
@@ -59,6 +64,7 @@ export class DashboardMenuComponent implements OnInit {
           duration: 6000,
           panelClass: ['fail-snackbar'],
         });
+        this.progBarService.runProgressBar.next(false);
       }
     );
   }

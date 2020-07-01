@@ -1,4 +1,4 @@
-import { ProgressBarService } from './../../../../Services/progress-bar.service';
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { OrderService } from './../../../../Services/Order/order.service';
@@ -28,7 +28,7 @@ export class OrderDeleteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //#region
+  //#region Delete Request
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
     const httpOptions = {
@@ -51,7 +51,7 @@ export class OrderDeleteComponent implements OnInit {
         var message = error.error['value'];
 
         if (error.status == 400) {
-          message = 'One ore more validation errors';
+          message = 'One or more validation errors';
         }
 
         this._snackBar.open(message, 'Dismiss', {

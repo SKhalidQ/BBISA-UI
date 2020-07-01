@@ -1,4 +1,4 @@
-import { ProgressBarService } from './../../../../Services/progress-bar.service';
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';

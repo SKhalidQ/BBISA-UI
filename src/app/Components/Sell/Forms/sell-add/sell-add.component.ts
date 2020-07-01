@@ -1,3 +1,4 @@
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { SellService } from './../../../../Services/Sell/sell.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sell-add.component.css'],
 })
 export class SellAddComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private sellService: SellService,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   checkedR = false;
 
@@ -37,12 +44,15 @@ export class SellAddComponent implements OnInit {
     containerReturned: new FormControl(false),
     totalCost: new FormControl('', [Validators.required, Validators.min(0.01)]),
     payed: new FormControl('', [Validators.required, Validators.min(0.0), Validators.max(999.99)]),
+    change: new FormControl(''),
   });
 
   ngOnInit() {}
 
   //#region Get & Post Request
   getSubtotal() {
+    this.progBarService.runProgressBar.next(true);
+
     var url =
       this.defaultGetURL +
       'ProductID=' +
@@ -54,7 +64,7 @@ export class SellAddComponent implements OnInit {
 
     this.http.get(url).subscribe(
       (result) => {
-        this._snackBar.open('Subtotal: £ ' + result['value'], 'Dismiss', {
+        this._snackBar.open('Subtotal: £ ' + result['value'].toFixed(2), 'Dismiss', {
           duration: 4000,
           panelClass: ['success-snackbar'],
         });
@@ -66,12 +76,13 @@ export class SellAddComponent implements OnInit {
 
         this.totalCost = result['value'].toFixed(2);
         url = this.defaultGetURL;
+        this.progBarService.runProgressBar.next(false);
       },
       (error) => {
         var message = error.error['value'];
 
         if (error.status == 400) {
-          message = 'One ore more validation errors';
+          message = 'One or more validation errors';
         }
 
         this._snackBar.open(message, 'Dismiss', {
@@ -84,11 +95,14 @@ export class SellAddComponent implements OnInit {
         this.disablePurchaseButton = true;
 
         url = this.defaultGetURL;
+        this.progBarService.runProgressBar.next(false);
       }
     );
   }
 
   onSubmit() {
+    this.progBarService.runProgressBar.next(true);
+
     var url = this.defaultPostURL + this.postSell.value['productID'];
 
     if (this.postSell.value['totalCost'] == '0') {
@@ -110,12 +124,13 @@ export class SellAddComponent implements OnInit {
         this.sellService.redoGet.next();
         this.productService.redoGet.next();
         url = this.defaultPostURL;
+        this.progBarService.runProgressBar.next(false);
       },
       (error) => {
         var message = error.error['value'];
 
         if (error.status == 400) {
-          message = 'One ore more validation errors';
+          message = 'One or more validation errors';
         }
 
         this._snackBar.open(message, 'Dismiss', {
@@ -124,6 +139,7 @@ export class SellAddComponent implements OnInit {
         });
 
         url = this.defaultPostURL;
+        this.progBarService.runProgressBar.next(false);
       }
     );
   }

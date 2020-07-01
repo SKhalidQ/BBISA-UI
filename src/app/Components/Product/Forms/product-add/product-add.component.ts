@@ -1,4 +1,4 @@
-import { ProgressBarService } from './../../../../Services/progress-bar.service';
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

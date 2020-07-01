@@ -22,9 +22,8 @@
 
       <mat-form-field class="txtBox" appearance="standard" *ngIf="enableSubtotalBox">
         <mat-label>Subtotal</mat-label>
-        <input matInput type="number" formControlName="totalCost" placeholder="Subtotal" readonly />
+        <input matInput type="number" formControlName="totalCost" [(ngModel)]="totalCost" placeholder="Subtotal" readonly />
         <span matPrefix>£ &nbsp;</span>
-        <mat-error *ngIf="validateField('totalCost').invalid">{{ getErrorMessage("totalCost") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="txtBox" appearance="standard" *ngIf="enablePayBox">
@@ -36,7 +35,7 @@
 
       <mat-form-field class="txtBox" appearance="standard" *ngIf="enableChangeBox">
         <mat-label>Change</mat-label>
-        <input matInput type="number" formControlName="change" placeholder="Change" readonly />
+        <input matInput type="number" formControlName="change" [(ngModel)]="changeDue" placeholder="Change" readonly />
         <span matPrefix>£ &nbsp;</span>
       </mat-form-field>
       <br />

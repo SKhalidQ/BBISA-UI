@@ -1,5 +1,8 @@
-import { ProgressBarService } from './Services/progress-bar.service';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProgressBarService } from './Services/Progress Bar/progress-bar.service';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Observable, Observer, fromEvent, merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
@@ -7,29 +10,25 @@ import { MediaMatcher } from '@angular/cdk/layout';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'BBIS-UI';
+export class AppComponent implements OnInit {
+  title = 'Beer Bottle Inventory System UI';
 
-  constructor(public progBarService: ProgressBarService) {}
+  internetConnection: boolean;
 
-  // mobileQuery: MediaQueryList;
+  constructor(public progBarService: ProgressBarService, private _snackBar: MatSnackBar) {}
 
-  // fillerNav = [
-  //   { name: 'Home', route: 'Home', icon: 'home' },
-  //   { name: 'LogIn', route: 'LogIn', icon: 'login' },
-  // ];
+  ngOnInit() {
+    this.checkConnectionStatus$().subscribe((connStatus: boolean) => console.log('Connection Status is', connStatus));
+  }
 
-  // private _mobileQueryListener: () => void;
-
-  // constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-  //   this.mobileQuery = media.matchMedia('(max-width: 600px)');
-  //   this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-  //   this.mobileQuery.addListener(this._mobileQueryListener);
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.mobileQuery.removeListener(this._mobileQueryListener);
-  // }
-
-  // shouldRun = true;
+  checkConnectionStatus$() {
+    return merge<boolean>(
+      fromEvent(window, 'offline').pipe(map(() => false)),
+      fromEvent(window, 'online').pipe(map(() => true)),
+      new Observable((sub: Observer<boolean>) => {
+        sub.next(navigator.onLine);
+        sub.complete();
+      })
+    );
+  }
 }

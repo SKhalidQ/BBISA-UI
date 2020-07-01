@@ -1,4 +1,4 @@
-import { ProgressBarService } from './../../../../Services/progress-bar.service';
+import { ProgressBarService } from '../../../../Services/Progress Bar/progress-bar.service';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { SellService } from './../../../../Services/Sell/sell.service';
 import { Component, OnInit } from '@angular/core';
@@ -26,13 +26,13 @@ export class SellDeleteComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //#region
+  //#region Delete Request
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: this.deleteSell.value['orderID'],
+      body: this.deleteSell.value['sellID'],
     };
 
     this.http.delete('https://bbisa.azurewebsites.net/api/Sell/EliminateSell', httpOptions).subscribe(

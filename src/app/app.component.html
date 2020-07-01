@@ -1,8 +1,3 @@
-<section>
-  <span>{{ progBarService.runProgressBar.value }}</span>
-  <mat-progress-bar color="warn" mode="indeterminate" *ngIf="progBarService.progressBarLoading$ | async"></mat-progress-bar>
-</section>
-
 <mat-sidenav-container>
   <!-- class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0" -->
 
@@ -16,6 +11,9 @@
     <app-header (toggle)="sideNav.toggle()"></app-header>
 
     <main>
+      <section>
+        <mat-progress-bar color="warn" mode="indeterminate" *ngIf="progBarService.progressBarLoading$ | async"></mat-progress-bar>
+      </section>
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>
