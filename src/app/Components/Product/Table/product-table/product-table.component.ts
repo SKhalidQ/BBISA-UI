@@ -1,3 +1,4 @@
+import { ProgressBarService } from './../../../../Services/Progress Bar/progress-bar.service';
 import { GetProduct } from './../../../../Models/product.model';
 import { ProductService } from './../../../../Services/Product/product.service';
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
@@ -21,25 +22,23 @@ export class ProductTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private ProgBarService: ProgressBarService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GetProduct>();
     this.fillTable();
-    this.dataSource.sort = this.sort;
 
     this.productService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GetProduct>();
       this.fillTable();
-      this.dataSource.sort = this.sort;
     });
   }
 
   fillTable() {
+    this.dataSource = new MatTableDataSource<GetProduct>();
     this.dataSource.paginator = this.paginator;
     this.productService.getProductList().subscribe((products) => {
       this.dataSource.data = products;
     });
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

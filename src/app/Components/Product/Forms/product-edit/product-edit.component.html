@@ -17,13 +17,16 @@
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Sell Price</mat-label>
         <input matInput type="number" formControlName="sellPrice" placeholder="Sell Price" step="0.01" min="0.01" max="20" />
+        <mat-error *ngIf="validateField('sellPrice').invalid">{{ getErrorMessage("sellPrice") }}</mat-error>
         <span matPrefix>£&nbsp;</span>
       </mat-form-field>
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Discount</mat-label>
-        <input matInput type="number" formControlName="discount" placeholder="Discount" /> </mat-form-field
-      ><br /><br />
+        <input matInput type="number" formControlName="discount" placeholder="Discount" min="1" />
+        <mat-error *ngIf="validateField('discount').invalid">{{ getErrorMessage("discount") }}</mat-error>
+      </mat-form-field>
+      <br /><br /><br />
     </div>
 
     <div class="request-themes">

@@ -11,12 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./product-edit.component.css'],
 })
 export class ProductEditComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private productService: ProductService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService, private progBarService: ProgressBarService) {}
 
   checkedA = false;
   checkedR = false;
@@ -24,7 +19,7 @@ export class ProductEditComponent implements OnInit {
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
 
   editProduct = new FormGroup({
-    productID: new FormControl('', [Validators.required]),
+    productID: new FormControl('', [Validators.required, Validators.min(1)]),
     returnable: new FormControl(false),
     sellPrice: new FormControl('', [Validators.min(0.01), Validators.max(999.99)]),
     discount: new FormControl('', [Validators.max(100)]),
@@ -86,11 +81,22 @@ export class ProductEditComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.editProduct.get(fieldName);
     var required = 'Field is required';
-    var maxLength = fieldName + ' has hit its max length';
+    var minIDValue = 'Minimum value of 1';
+    var minValue = 'Minimum value of 0.01';
+    var maxDiscount = 'Maximum is 100%';
+    var maxSellPrice = 'Maximum is £999.99';
 
     if (field.hasError('required')) return required;
 
-    // if (field.hasError('max')) return maxLength;
+    if (field.hasError('min')) {
+      if (fieldName == 'productID') return minIDValue;
+      else return minValue;
+    }
+
+    if (field.hasError('max')) {
+      if (fieldName == 'discount') return maxDiscount;
+      else return maxSellPrice;
+    }
 
     return 'Error in validation';
   }

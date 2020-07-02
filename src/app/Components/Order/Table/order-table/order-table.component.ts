@@ -22,22 +22,20 @@ export class OrderTableComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GetOrder>();
     this.fillTable();
-    this.dataSource.sort = this.sort;
 
     this.orderService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GetOrder>();
       this.fillTable();
-      this.dataSource.sort = this.sort;
     });
   }
 
   fillTable() {
+    this.dataSource = new MatTableDataSource<GetOrder>();
     this.dataSource.paginator = this.paginator;
     this.orderService.getOrderList().subscribe((orders) => {
       this.dataSource.data = orders;
     });
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -47,6 +45,10 @@ export class OrderTableComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  getTotalCost() {
+    return this.dataSource.data.map((t) => t.totalCost).reduce((acc, value) => acc + value, 0);
   }
 }
 

@@ -18,15 +18,9 @@ export class DashboardMenuComponent implements OnInit {
   @Output() hideShow = false;
 
   position = new FormControl('below');
+  private defaultURL = 'https://bbisa.azurewebsites.net/api/';
 
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private productService: ProductService,
-    private orderService: OrderService,
-    private sellService: SellService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService, private orderService: OrderService, private sellService: SellService, private progBarService: ProgressBarService) {}
 
   ngOnInit(): void {}
 
@@ -34,14 +28,35 @@ export class DashboardMenuComponent implements OnInit {
     this.hideShow = !this.hideShow;
   }
 
+  APIStatus() {
+    this.progBarService.runProgressBar.next(true);
+
+    this.http.get(this.defaultURL + 'Status/CurrentStatus').subscribe(
+      (result) => {
+        this._snackBar.open(result.toString(), 'Dismiss', {
+          duration: 4000,
+          panelClass: ['success-snackbar'],
+        });
+
+        this.progBarService.runProgressBar.next(false);
+      },
+      (error) => {
+        var message = error.error['value'];
+
+        this._snackBar.open(message, 'Dismiss', {
+          duration: 6000,
+          panelClass: ['fail-snackbar'],
+        });
+        this.progBarService.runProgressBar.next(false);
+      }
+    );
+  }
+
   resetDatabase() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = 'https://bbisa.azurewebsites.net/api/Status/ClearDatabase';
-
-    this.http.options(url).subscribe(
+    this.http.options(this.defaultURL + 'Status/ClearDatabase').subscribe(
       (result) => {
-        console.log(result);
         this._snackBar.open(result.toString(), 'Dismiss', {
           duration: 4000,
           panelClass: ['success-snackbar'],
@@ -54,7 +69,6 @@ export class DashboardMenuComponent implements OnInit {
       },
       (error) => {
         var message = error.error['value'];
-        console.log(error);
 
         if (error.status == 400) {
           message = 'Internal server error';

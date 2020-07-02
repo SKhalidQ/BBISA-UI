@@ -26,6 +26,7 @@
   min-height: 300px;
   max-height: 783px;
   padding-bottom: 10px;
+  margin: 100px auto;
 }
 
 h1 {
@@ -51,7 +52,7 @@ h1 {
 }
 
 .mat-elevation-z20 {
-  width: 85%;
+  width: 95%;
   margin: 25px auto;
 }
 

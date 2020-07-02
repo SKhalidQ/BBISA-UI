@@ -20,6 +20,11 @@ body {
   color: white;
 }
 
+.loggedIn-snackbar {
+  background-color: #000000;
+  color: white;
+}
+
 .buttonIcon {
   font-size: 20px;
 }

@@ -13,13 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sell-add.component.css'],
 })
 export class SellAddComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private sellService: SellService,
-    private productService: ProductService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService, private progBarService: ProgressBarService) {}
 
   checkedR = false;
 
@@ -43,7 +37,7 @@ export class SellAddComponent implements OnInit {
     quantity: new FormControl('', [Validators.required, Validators.min(1), Validators.max(999)]),
     containerReturned: new FormControl(false),
     totalCost: new FormControl('', [Validators.required, Validators.min(0.01)]),
-    payed: new FormControl('', [Validators.required, Validators.min(0.0), Validators.max(999.99)]),
+    payed: new FormControl('', [Validators.required, Validators.min(0.01), Validators.max(999.99)]),
     change: new FormControl(''),
   });
 
@@ -53,14 +47,7 @@ export class SellAddComponent implements OnInit {
   getSubtotal() {
     this.progBarService.runProgressBar.next(true);
 
-    var url =
-      this.defaultGetURL +
-      'ProductID=' +
-      this.postSell.value['productID'] +
-      '&Quantity=' +
-      this.postSell.value['quantity'] +
-      '&ContainerReturned=' +
-      this.postSell.value['containerReturned'];
+    var url = this.defaultGetURL + 'ProductID=' + this.postSell.value['productID'] + '&Quantity=' + this.postSell.value['quantity'] + '&ContainerReturned=' + this.postSell.value['containerReturned'];
 
     this.http.get(url).subscribe(
       (result) => {
@@ -149,11 +136,22 @@ export class SellAddComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.postSell.get(fieldName);
     var required = 'Field is required';
-    var maxLength = fieldName + ' has hit its max length';
+    var minValue = 'Minimum value of 0.01';
+    var minIDValue = 'Minimum value of 1';
+    var maxSellPrice = 'Maximum is £999.99';
+    var maxQuantity = 'Maximum is 999';
 
     if (field.hasError('required')) return required;
 
-    // if (field.hasError('max')) return maxLength;
+    if (field.hasError('min')) {
+      if (fieldName == 'payed') return minValue;
+      else return minIDValue;
+    }
+
+    if (field.hasError('max')) {
+      if (fieldName == 'quantity') return maxQuantity;
+      else return maxSellPrice;
+    }
 
     return 'Error in validation';
   }

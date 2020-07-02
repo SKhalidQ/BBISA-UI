@@ -12,13 +12,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./order-add.component.css'],
 })
 export class OrderAddComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private orderService: OrderService,
-    private productService: ProductService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private orderService: OrderService, private productService: ProductService, private progBarService: ProgressBarService) {}
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
 
@@ -71,11 +65,22 @@ export class OrderAddComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.addOrder.get(fieldName);
     var required = 'Field is required';
-    var maxLength = fieldName + ' has hit its max length';
+    var minValue = 'Minimum value of 0.01';
+    var minIDValue = 'Minimum value of 1';
+    var maxSellPrice = 'Maximum is £999.99';
+    var maxQuantity = 'Maximum is 999';
 
     if (field.hasError('required')) return required;
 
-    // if (field.hasError('max')) return maxLength;
+    if (field.hasError('min')) {
+      if (fieldName == 'totalCost') return minValue;
+      else return minIDValue;
+    }
+
+    if (field.hasError('max')) {
+      if (fieldName == 'quantityOrdered') return maxQuantity;
+      else return maxSellPrice;
+    }
 
     return 'Error in validation';
   }

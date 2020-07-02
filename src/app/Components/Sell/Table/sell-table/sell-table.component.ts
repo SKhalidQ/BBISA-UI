@@ -24,22 +24,20 @@ export class SellTableComponent implements OnInit {
   constructor(private sellService: SellService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GetSell>();
     this.fillTable();
-    this.dataSource.sort = this.sort;
 
     this.sellService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GetSell>();
       this.fillTable();
-      this.dataSource.sort = this.sort;
     });
   }
 
   fillTable() {
+    this.dataSource = new MatTableDataSource<GetSell>();
     this.dataSource.paginator = this.paginator;
     this.sellService.getSellList().subscribe((products) => {
       this.dataSource.data = products;
     });
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -52,8 +50,7 @@ export class SellTableComponent implements OnInit {
   }
 
   getTotalCost() {
-    // return this.sellService
-    // return this.dataSource.map(t => t.cost).reduce((acc, value) => acc + value, 0);
+    return this.dataSource.data.map((t) => t.totalCost).reduce((acc, value) => acc + value, 0);
   }
 }
 

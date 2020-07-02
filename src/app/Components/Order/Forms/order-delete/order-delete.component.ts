@@ -12,13 +12,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./order-delete.component.css'],
 })
 export class OrderDeleteComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private orderService: OrderService,
-    private productService: ProductService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private orderService: OrderService, private productService: ProductService, private progBarService: ProgressBarService) {}
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Orders/EliminateOrder';
 
@@ -68,11 +62,11 @@ export class OrderDeleteComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.deleteOrder.get(fieldName);
     var required = 'Field is required';
-    var maxLength = fieldName + ' has hit its max length';
+    var minIDValue = 'Minimum value of 1';
 
     if (field.hasError('required')) return required;
 
-    // if (field.hasError('max')) return maxLength;
+    if (field.hasError('min')) return minIDValue;
 
     return 'Error in validation';
   }

@@ -33,7 +33,7 @@
         <mat-error *ngIf="validateField('payed').touched">{{ getErrorMessage("payed") }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="txtBox" appearance="standard" *ngIf="enableChangeBox">
+      <mat-form-field class="txtBox change" appearance="standard" *ngIf="enableChangeBox">
         <mat-label>Change</mat-label>
         <input matInput type="number" formControlName="change" [(ngModel)]="changeDue" placeholder="Change" readonly />
         <span matPrefix>£ &nbsp;</span>
@@ -46,9 +46,7 @@
 
       <span class="buttonSpace"></span>
 
-      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="disablePurchaseButton">
-        <mat-icon class="buttonIcon">add</mat-icon>Add Sell
-      </button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="disablePurchaseButton"><mat-icon class="buttonIcon">add</mat-icon>Add Sell</button>
     </div>
   </form>
 </div>

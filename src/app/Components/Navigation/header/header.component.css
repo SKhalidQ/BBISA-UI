@@ -1,26 +1,34 @@
-
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
-a:hover, a:active {
-    color: lightgray;
+a:hover,
+a:active {
+  color: lightgray;
 }
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
-.buttonSpace{
-    margin-right: 5px;
+.buttonSpace {
+  margin-right: 5px;
 }
 
 .RightButtons {
-    width: 80px;
+  width: 80px;
 }
 
 .menuIcons {
-    display: inline-block;
-    padding-left: 6px;
+  display: inline-block;
+  padding-left: 6px;
+}
+
+.menuButton {
+  margin-left: -15px;
+}
+
+mat-toolbar {
+  width: auto;
 }

@@ -6,8 +6,9 @@
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Brand</mat-label>
         <input matInput formControlName="brand" type="text" placeholder="Brand" required />
-        <mat-error *ngIf="validateField('brand').invalid">{{ getErrorMessage("brand") }}</mat-error> </mat-form-field
-      ><br />
+        <mat-error *ngIf="validateField('brand').invalid">{{ getErrorMessage("brand") }}</mat-error>
+      </mat-form-field>
+      <br />
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Flavour</mat-label>
@@ -17,7 +18,7 @@
 
       <div class="checkBox">
         <label matInput for="alcoholic">Alcoholic</label>
-        <mat-checkbox color="primary" formControlName="alcoholic"></mat-checkbox>
+        <mat-checkbox formControlName="alcoholic"></mat-checkbox>
       </div>
 
       <mat-form-field class="txtBox" appearance="standard">
@@ -33,7 +34,7 @@
 
       <div class="checkBox">
         <label for="returnable">Returnable</label>
-        <mat-checkbox color="primary" formControlName="returnable"></mat-checkbox><br />
+        <mat-checkbox formControlName="returnable"></mat-checkbox><br />
       </div>
 
       <mat-form-field class="txtBox" appearance="standard">

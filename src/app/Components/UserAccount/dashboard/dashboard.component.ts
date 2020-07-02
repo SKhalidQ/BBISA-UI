@@ -1,25 +1,22 @@
+import { RouterOutlet } from '@angular/router';
 import { DashboardMenuComponent } from './../dashboard-menu/dashboard-menu.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-
   showComp2: boolean = false;
 
-  switches: string = "product";
+  switches: string = 'product';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {}
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
-
-  hideShowComponent() {
-    
-  }
-
 }

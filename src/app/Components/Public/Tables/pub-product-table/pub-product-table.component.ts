@@ -24,22 +24,20 @@ export class PubProductTableComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<GetPubProduct>();
     this.fillTable();
-    this.dataSource.sort = this.sort;
 
     this.productService.redoGet.subscribe(() => {
-      this.dataSource = new MatTableDataSource<GetPubProduct>();
       this.fillTable();
-      this.dataSource.sort = this.sort;
     });
   }
 
   fillTable() {
+    this.dataSource = new MatTableDataSource<GetPubProduct>();
     this.dataSource.paginator = this.paginator;
     this.productService.getProductList().subscribe((products) => {
       this.dataSource.data = products;
     });
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

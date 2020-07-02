@@ -12,13 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./sell-delete.component.css'],
 })
 export class SellDeleteComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private sellService: SellService,
-    private productService: ProductService,
-    private progBarService: ProgressBarService
-  ) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService, private progBarService: ProgressBarService) {}
 
   deleteSell = new FormGroup({
     sellID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -68,11 +62,11 @@ export class SellDeleteComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.deleteSell.get(fieldName);
     var required = 'Field is required';
-    var maxLength = fieldName + ' has hit its max length';
+    var minIDValue = 'Minimum value of 1';
 
     if (field.hasError('required')) return required;
 
-    // if (field.hasError('max')) return maxLength;
+    if (field.hasError('min')) return minIDValue;
 
     return 'Error in validation';
   }

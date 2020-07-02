@@ -1,13 +1,22 @@
-.mat-elevation-z24{
-    width: 400px;
+.mat-elevation-z24 {
+  width: 400px;
+  text-align: center;
+  margin: 200px auto;
+}
+
+button {
+  margin-top: 20px;
+}
+
+h2 {
+  padding-top: 10px;
+}
+
+@media (max-width: 785px) {
+  .mat-elevation-z24 {
+    width: 300px;
     text-align: center;
-    margin: 50px auto;
-}
-
-button{
-    margin-top: 20px;
-}
-
-h2{
-    padding-top: 10px;
+    margin: 100px auto;
+    margin-bottom: auto;
+  }
 }

@@ -13,12 +13,7 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./product-add.component.css'],
 })
 export class ProductAddComponent implements OnInit {
-  constructor(
-    private _http: HttpClient,
-    private _snackBar: MatSnackBar,
-    private _productService: ProductService,
-    private _progBarService: ProgressBarService
-  ) {}
+  constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private _productService: ProductService, private _progBarService: ProgressBarService) {}
 
   checkedA = false;
   checkedR = false;
@@ -67,8 +62,6 @@ export class ProductAddComponent implements OnInit {
         this._progBarService.runProgressBar.next(false);
       },
       (error) => {
-        console.log(error.error);
-
         var message = error.error;
 
         if (error.status == 400) {
@@ -93,14 +86,16 @@ export class ProductAddComponent implements OnInit {
     var required = 'Field is required';
     var maxDiscount = 'Maximum is 100%';
     var maxSellPrice = 'Maximum is £999.99';
+    var minValue = 'Minimum value of 0.01';
 
     if (field.hasError('required')) return required;
 
-    if (field.hasError('max'))
+    if (field.hasError('min')) return minValue;
+
+    if (field.hasError('max')) {
       if (fieldName == 'discount') return maxDiscount;
       else return maxSellPrice;
-
-    // if (field.hasError('max')) return maxLength;
+    }
 
     return 'Error in validation';
   }

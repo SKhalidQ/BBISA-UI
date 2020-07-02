@@ -1,65 +1,79 @@
-.mat-elevated-m8{
-    text-align: center;
-    margin-top: 10px;
-    margin-left: 10px;
-    height: auto;
-    width: 200px;
-    /* border-color: red; */
-    /* border-style: dotted; */
+.mat-elevated-m8 {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: auto;
+  width: 200px;
+  /* border-color: red; */
+  /* border-style: dotted; */
 }
 
-button{
-    width: 107px;
-    margin-bottom: 10px;
+button {
+  width: 107px;
+  margin-bottom: 10px;
 }
 
 /* Tooltip container */
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 button .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
 
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 /* Tooltip arrow */
 button .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
 button:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
-mat-divider{
-    margin: 10px 10px;
+mat-divider {
+  margin: 10px 10px;
+}
+
+.divider {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 785px) {
+  .mat-elevated-m8 {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 0px;
+    height: auto;
+    width: 200px;
+  }
 }

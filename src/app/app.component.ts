@@ -1,14 +1,15 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProgressBarService } from './Services/Progress Bar/progress-bar.service';
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  animations: [],
 })
 export class AppComponent implements OnInit {
   title = 'Beer Bottle Inventory System UI';

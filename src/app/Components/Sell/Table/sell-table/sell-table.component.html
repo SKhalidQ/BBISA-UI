@@ -14,41 +14,48 @@
     <ng-container matColumnDef="sellID">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Sell ID</th>
       <td mat-cell *matCellDef="let sell">{{ sell.sellID }}</td>
+      <td mat-footer-cell *matFooterCellDef>Total</td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
       <td mat-cell *matCellDef="let sell">{{ sell.quantity }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="totalCost">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</th>
       <td mat-cell *matCellDef="let sell">{{ sell.totalCost | currency: "GBP":"symbol":"1.2-2" }}</td>
+      <td mat-footer-cell *matFooterCellDef>{{ getTotalCost() | currency: "GBP":"symbol":"1.2-2" }}</td>
     </ng-container>
 
     <ng-container matColumnDef="containerReturned">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Container Returned</th>
       <td mat-cell *matCellDef="let sell">{{ sell.containerReturned | booleanValues }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="payed">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount Payed</th>
       <td mat-cell *matCellDef="let sell">{{ sell.payed | currency: "GBP":"symbol":"1.2-2" }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="sellDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Sell Date</th>
       <td mat-cell *matCellDef="let sell">{{ sell.sellDate | date: "dd/MM/yyyy" }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="productID">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Product ID</th>
       <td mat-cell *matCellDef="let sell">{{ sell.product.productID }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
-    <!-- <tr mat-footer-row *matFooterRowDef="displayColumns; sticky: true"></tr> -->
+    <tr mat-footer-row *matFooterRowDef="displayColumns; sticky: true"></tr>
   </table>
   <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[5, 10]"></mat-paginator>
 </div>

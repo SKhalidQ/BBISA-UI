@@ -83,6 +83,7 @@ import { ProductsComponent } from './Components/Product/products/products.compon
 import { SellsComponent } from './Components/Sell/sells/sells.component';
 import { OrdersComponent } from './Components/Order/orders/orders.component';
 import { PubProductTableComponent } from './Components/Public/Tables/pub-product-table/pub-product-table.component';
+import { StockBooleanPipe } from './Pipes/stock-boolean.pipe';
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { PubProductTableComponent } from './Components/Public/Tables/pub-product
     SellsComponent,
     OrdersComponent,
     PubProductTableComponent,
+    StockBooleanPipe,
   ],
   imports: [
     BrowserModule,

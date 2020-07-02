@@ -1,4 +1,4 @@
-<div class="mat-elevation-z19" id="compDiv">
+<div class="mat-elevation-z5" id="compDiv">
   <br />
   <h1>Product List Table</h1>
 
@@ -43,8 +43,8 @@
 
     <!-- Stock Column -->
     <ng-container matColumnDef="stockAmount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock Amount</th>
-      <td mat-cell *matCellDef="let product">{{ product.stockAmount }}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Available in Stock</th>
+      <td mat-cell *matCellDef="let product">{{ product.stockAmount | stockBoolean }}</td>
     </ng-container>
 
     <!-- Price Column -->
@@ -62,5 +62,5 @@
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
     <tr mat-row *matRowDef="let product; columns: displayColumns"></tr>
   </table>
-  <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[5, 10]"></mat-paginator>
+  <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[5, 10, 20, 40, 80]"></mat-paginator>
 </div>
