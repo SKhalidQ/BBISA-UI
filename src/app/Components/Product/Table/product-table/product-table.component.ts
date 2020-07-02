@@ -1,7 +1,7 @@
 import { ProgressBarService } from './../../../../Services/Progress Bar/progress-bar.service';
 import { GetProduct } from './../../../../Models/product.model';
 import { ProductService } from './../../../../Services/Product/product.service';
-import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';

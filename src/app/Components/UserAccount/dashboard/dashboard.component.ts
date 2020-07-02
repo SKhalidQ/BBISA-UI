@@ -1,5 +1,4 @@
 import { RouterOutlet } from '@angular/router';
-import { DashboardMenuComponent } from './../dashboard-menu/dashboard-menu.component';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

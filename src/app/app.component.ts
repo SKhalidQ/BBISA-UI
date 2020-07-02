@@ -3,7 +3,6 @@ import { ProgressBarService } from './Services/Progress Bar/progress-bar.service
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, fromEvent, merge } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
