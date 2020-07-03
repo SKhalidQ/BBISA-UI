@@ -136,7 +136,7 @@ export class SellAddComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.postSell.get(fieldName);
     var required = 'Field is required';
-    var minValue = 'Minimum value of 0.01';
+    var minValue = 'Minimum value of £0.01';
     var minIDValue = 'Minimum value of 1';
     var maxSellPrice = 'Maximum is £999.99';
     var maxQuantity = 'Maximum is 999';

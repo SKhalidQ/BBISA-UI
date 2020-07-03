@@ -36,7 +36,7 @@ export class LogInComponent implements OnInit {
       (result) => {
         this._snackBar.open(`Welcome ${this.verifyUser.value['username']}`, 'Dismiss', {
           duration: 4000,
-          panelClass: 'loggedIn-snackbar',
+          panelClass: 'logging-snackbar',
         });
         this.router.navigateByUrl('/Dashboard');
         this.progBarService.runProgressBar.next(false);

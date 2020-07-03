@@ -26,7 +26,16 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="warn" matTooltip="Generate graph" class="tooltip" matTooltip="Coming Soon" [matTooltipPosition]="position.value" matTooltipHideDelay="100" disabled>
+  <button
+    mat-raised-button
+    color="warn"
+    matTooltip="Generate graph"
+    class="tooltip"
+    matTooltip="Coming Soon"
+    [matTooltipPosition]="position.value"
+    matTooltipHideDelay="100"
+    disabled
+  >
     Show Graph
     <span class="tooltiptext">Coming Soon</span>
   </button>
@@ -36,6 +45,6 @@
     <button mat-raised-button color="primary" (click)="APIStatus()">API Status</button>
     <button mat-raised-button color="warn" matTooltip="Clear all data from database" (click)="resetDatabase()">Reset API</button>
     <mat-divider></mat-divider>
-    <button mat-raised-button color="accent" routerLink="/Home">Log Out</button>
+    <button mat-raised-button color="accent" (click)="logOut()">Log Out</button>
   </div>
 </div>

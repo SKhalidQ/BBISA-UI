@@ -11,10 +11,17 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./product-edit.component.css'],
 })
 export class ProductEditComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   checkedA = false;
   checkedR = false;
+
+  discountBox: number;
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
 
@@ -22,7 +29,7 @@ export class ProductEditComponent implements OnInit {
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
     returnable: new FormControl(false),
     sellPrice: new FormControl('', [Validators.min(0.01), Validators.max(999.99)]),
-    discount: new FormControl('', [Validators.max(100)]),
+    discount: new FormControl('', [Validators.min(0), Validators.max(100)]),
   });
 
   ngOnInit(): void {}
@@ -82,14 +89,19 @@ export class ProductEditComponent implements OnInit {
     var field = this.editProduct.get(fieldName);
     var required = 'Field is required';
     var minIDValue = 'Minimum value of 1';
-    var minValue = 'Minimum value of 0.01';
+    var minValue = 'Minimum value of £0.01';
+    var minDiscount = 'Minimum is 0%';
     var maxDiscount = 'Maximum is 100%';
     var maxSellPrice = 'Maximum is £999.99';
+    var wholeNumber = 'Whole numbers only [0 - 100]';
 
     if (field.hasError('required')) return required;
 
+    if (field.hasError('pattern')) return wholeNumber;
+
     if (field.hasError('min')) {
       if (fieldName == 'productID') return minIDValue;
+      if (fieldName == 'discount') return minDiscount;
       else return minValue;
     }
 
@@ -103,6 +115,11 @@ export class ProductEditComponent implements OnInit {
 
   validateField(fieldName: string) {
     return this.editProduct.get(fieldName);
+  }
+
+  roundMethod(value: number) {
+    value = Math.floor(this.editProduct.value['discount']);
+    this.discountBox = value;
   }
   //#endregion
 }

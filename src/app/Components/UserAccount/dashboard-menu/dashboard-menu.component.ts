@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-menu',
@@ -19,7 +20,15 @@ export class DashboardMenuComponent implements OnInit {
   position = new FormControl('below');
   private defaultURL = 'https://bbisa.azurewebsites.net/api/';
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService, private orderService: OrderService, private sellService: SellService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private productService: ProductService,
+    private orderService: OrderService,
+    private sellService: SellService,
+    private progBarService: ProgressBarService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -80,5 +89,17 @@ export class DashboardMenuComponent implements OnInit {
         this.progBarService.runProgressBar.next(false);
       }
     );
+  }
+
+  logOut() {
+    this.progBarService.runProgressBar.next(true);
+
+    this._snackBar.open('Logged out successfuly', 'Dismiss', {
+      duration: 4000,
+      panelClass: ['logging-snackbar'],
+    });
+
+    this.router.navigateByUrl('/Home');
+    this.progBarService.runProgressBar.next(false);
   }
 }

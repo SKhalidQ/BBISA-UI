@@ -6,15 +6,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-//Pipes
-import { BooleanValuesPipe } from './Pipes/boolean-values.pipe';
-import { StockBooleanPipe } from './Pipes/stock-boolean.pipe';
-
-//Services
-import { SellService } from './Services/Sell/sell.service';
-import { OrderService } from './Services/Order/order.service';
-import { ProductService } from './Services/Product/product.service';
-
 //Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -66,6 +57,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+//Services
+import { SellService } from './Services/Sell/sell.service';
+import { OrderService } from './Services/Order/order.service';
+import { ProductService } from './Services/Product/product.service';
+
+//Pipes
+import { BooleanValuesPipe } from './Pipes/boolean-values.pipe';
+import { StockBooleanPipe } from './Pipes/stock-boolean.pipe';
 
 //Other Libraries
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -132,6 +132,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSnackBarModule,
     MatSelectModule,
     FlexLayoutModule,
+    MatButtonModule,
   ],
   providers: [ProductService, OrderService, SellService],
   bootstrap: [AppComponent],
