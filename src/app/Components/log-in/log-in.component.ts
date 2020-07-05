@@ -13,17 +13,20 @@ import { Component, OnInit } from '@angular/core';
 export class LogInComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private router: Router, private progBarService: ProgressBarService) {}
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Users/VerifyUser';
+  private defaultURL = 'https://bbisa.azurewebsites.net/api';
 
   verifyUser = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required, Validators.min(5), Validators.max(20)]),
+    password: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {}
 
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
+
+    this._http.get(this.defaultURL + '/Status/CurrentStatus').subscribe();
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -32,7 +35,7 @@ export class LogInComponent implements OnInit {
       }),
     };
 
-    this._http.options(this.defaultURL, httpOptions).subscribe(
+    this._http.options(this.defaultURL + '/Users/VerifyUser', httpOptions).subscribe(
       (result) => {
         this._snackBar.open(`Welcome ${this.verifyUser.value['username']}`, 'Dismiss', {
           duration: 4000,

@@ -13,7 +13,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sell-add.component.css'],
 })
 export class SellAddComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private sellService: SellService,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   checkedR = false;
 
@@ -29,8 +35,7 @@ export class SellAddComponent implements OnInit {
   totalCost: number;
   changeDue: number;
 
-  private defaultGetURL = 'https://bbisa.azurewebsites.net/api/Sell/GetSubTotalSell?';
-  private defaultPostURL = 'https://bbisa.azurewebsites.net/api/Sell/AddSell?ProductID=';
+  private defaultURL = 'https://bbisa.azurewebsites.net/api/Sell';
 
   postSell = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -47,7 +52,14 @@ export class SellAddComponent implements OnInit {
   getSubtotal() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.defaultGetURL + 'ProductID=' + this.postSell.value['productID'] + '&Quantity=' + this.postSell.value['quantity'] + '&ContainerReturned=' + this.postSell.value['containerReturned'];
+    var url =
+      this.defaultURL +
+      '/GetSubTotalSell?ProductID=' +
+      this.postSell.value['productID'] +
+      '&Quantity=' +
+      this.postSell.value['quantity'] +
+      '&ContainerReturned=' +
+      this.postSell.value['containerReturned'];
 
     this.http.get(url).subscribe(
       (result) => {
@@ -62,7 +74,7 @@ export class SellAddComponent implements OnInit {
         this.disablePurchaseButton = false;
 
         this.totalCost = result['value'].toFixed(2);
-        url = this.defaultGetURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -81,7 +93,7 @@ export class SellAddComponent implements OnInit {
         this.enableSubtotalBox = false;
         this.disablePurchaseButton = true;
 
-        url = this.defaultGetURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       }
     );
@@ -90,7 +102,7 @@ export class SellAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.defaultPostURL + this.postSell.value['productID'];
+    var url = this.defaultURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
 
     if (this.postSell.value['totalCost'] == '0') {
       this.postSell.value['totalCost'] = 0;
@@ -110,7 +122,7 @@ export class SellAddComponent implements OnInit {
         this.enableChangeBox = true;
         this.sellService.redoGet.next();
         this.productService.redoGet.next();
-        url = this.defaultPostURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -125,7 +137,7 @@ export class SellAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
-        url = this.defaultPostURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       }
     );

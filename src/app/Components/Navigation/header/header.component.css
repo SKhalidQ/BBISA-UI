@@ -30,5 +30,6 @@ a:active {
 }
 
 mat-toolbar {
-  width: auto;
+  position: fixed, top;
+  z-index: 1000;
 }

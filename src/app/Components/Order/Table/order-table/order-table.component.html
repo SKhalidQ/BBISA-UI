@@ -6,7 +6,7 @@
     <mat-icon matBadgeColor="warn" class="searchIcon">search</mat-icon>
     <mat-form-field>
       <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Damm" />
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Order Date" />
     </mat-form-field>
   </div>
 
@@ -43,7 +43,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
     <tr mat-row *matRowDef="let order; columns: displayColumns"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayColumns; sticky: true"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayColumns"></tr>
   </table>
   <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[5, 10]"></mat-paginator>
 </div>

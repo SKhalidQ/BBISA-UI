@@ -5,11 +5,11 @@
 
   <mat-sidenav-content>
     <app-header (toggle)="sideNav.toggle()"></app-header>
+    <section>
+      <mat-progress-bar color="warn" mode="indeterminate" *ngIf="progBarService.progressBarLoading$ | async"></mat-progress-bar>
+    </section>
 
     <main>
-      <section>
-        <mat-progress-bar color="warn" mode="indeterminate" *ngIf="progBarService.progressBarLoading$ | async"></mat-progress-bar>
-      </section>
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>

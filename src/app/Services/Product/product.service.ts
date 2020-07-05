@@ -7,13 +7,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private getListURL = 'https://bbisa.azurewebsites.net/api/Products/ListProducts';
+  private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/ListProducts';
 
   redoGet: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getProductList(): Observable<GetProduct[]> {
-    return this.http.get<GetProduct[]>(this.getListURL);
+    return this.http.get<GetProduct[]>(this.defaultURL);
   }
 }

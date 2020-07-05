@@ -3,7 +3,7 @@
   <h3 class="fs-subtitle">Enter your user details</h3>
   <form class="LogInForm" [formGroup]="verifyUser" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width" appearance="standard">
-      <mat-label>User Name</mat-label>
+      <mat-label>Username</mat-label>
       <input matInput formControlName="username" type="text" />
       <mat-error *ngIf="validateField('username').invalid">{{ getErrorMessage("username") }}</mat-error>
     </mat-form-field>
