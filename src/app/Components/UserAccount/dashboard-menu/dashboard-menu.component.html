@@ -1,15 +1,15 @@
 <div class="mat-elevated-m8">
   <h4>Edit Inventory Items</h4>
-  <button mat-raised-button color="warn" routerLink="Product" routerLinkActive="true" [routerLinkActiveOptions]="{ exact: true }">
+  <button mat-raised-button color="accent" routerLink="Product">
     Products
   </button>
   <br />
-  <button mat-raised-button color="warn" routerLink="Orders" routerLinkActive="true" [routerLinkActiveOptions]="{ exact: true }">
+  <button mat-raised-button color="accent" routerLink="Orders">
     Orders
   </button>
 
   <br />
-  <button mat-raised-button color="warn" routerLink="Sell" routerLinkActive="true" [routerLinkActiveOptions]="{ exact: true }">
+  <button mat-raised-button color="accent" routerLink="Sell">
     Checkout
   </button>
 
@@ -26,25 +26,19 @@
     </mat-select>
   </mat-form-field>
 
-  <button
-    mat-raised-button
-    color="warn"
-    matTooltip="Generate graph"
-    class="tooltip"
-    matTooltip="Coming Soon"
-    [matTooltipPosition]="position.value"
-    matTooltipHideDelay="100"
-    disabled
-  >
+  <button mat-raised-button color="warn" routerLink="Graphs" disabled>
     Show Graph
     <span class="tooltiptext">Coming Soon</span>
   </button>
   <mat-divider></mat-divider>
 
   <div class="request-themes">
+    <h4>Settings</h4>
     <button mat-raised-button color="primary" (click)="APIStatus()">API Status</button>
     <button mat-raised-button color="warn" matTooltip="Clear all data from database" (click)="resetDatabase()">Reset API</button>
+    <button mat-raised-button color="accent" disabled>Account <span class="tooltiptext">Coming Soon</span></button>
     <mat-divider></mat-divider>
+    <h4>Exit</h4>
     <button mat-raised-button color="accent" (click)="logOut()">Log Out</button>
   </div>
 </div>

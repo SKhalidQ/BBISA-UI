@@ -5,14 +5,16 @@
     <div class="inputDiv">
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Brand</mat-label>
-        <input matInput formControlName="brand" type="text" placeholder="Brand" required />
+        <input matInput formControlName="brand" maxlength="20" type="text" placeholder="Brand" required />
+        <mat-hint align="end">{{ validateField("brand").value.length }} / 20</mat-hint>
         <mat-error *ngIf="validateField('brand').invalid">{{ getErrorMessage("brand") }}</mat-error>
       </mat-form-field>
       <br />
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Flavour</mat-label>
-        <input matInput type="text" formControlName="flavour" placeholder="Flavour" required />
+        <input matInput type="text" formControlName="flavour" maxlength="40" placeholder="Flavour" required />
+        <mat-hint align="end">{{ validateField("flavour").value.length }} / 40</mat-hint>
         <mat-error *ngIf="validateField('flavour').invalid">{{ getErrorMessage("flavour") }}</mat-error>
       </mat-form-field>
 
@@ -23,9 +25,10 @@
 
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Container Type</mat-label>
-        <input matInput type="text" formControlName="containerType" placeholder="Container Type" [matAutocomplete]="auto" required />
+        <input matInput type="text" formControlName="containerType" maxlength="20" placeholder="Container Type" [matAutocomplete]="auto" required />
+        <mat-hint align="end">{{ validateField("containerType").value.length }} / 20</mat-hint>
         <mat-error *ngIf="validateField('containerType').invalid">{{ getErrorMessage("containerType") }}</mat-error>
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{ option }}
           </mat-option>

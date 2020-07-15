@@ -12,7 +12,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./order-delete.component.css'],
 })
 export class OrderDeleteComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private orderService: OrderService, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private orderService: OrderService,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Orders/EliminateOrder';
 
@@ -39,6 +45,8 @@ export class OrderDeleteComponent implements OnInit {
 
         this.orderService.redoGet.next();
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {

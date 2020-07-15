@@ -1,5 +1,5 @@
 <div class="tabGap">
-  <h3 class="fs-title">Buy Product</h3>
+  <h3 class="fs-title">Sell Product</h3>
   <h2 class="fs-subtitle">Enter details to get subtotal and add a sale</h2>
   <form [formGroup]="postSell">
     <div class="inputDiv">
@@ -28,9 +28,9 @@
 
       <mat-form-field class="txtBox" appearance="standard" *ngIf="enablePayBox">
         <mat-label>Pay</mat-label>
-        <input matInput type="number" formControlName="payed" placeholder="Pay" required />
+        <input matInput type="number" formControlName="paid" placeholder="Pay" required />
         <span matPrefix>£ &nbsp;</span>
-        <mat-error *ngIf="validateField('payed').touched">{{ getErrorMessage("payed") }}</mat-error>
+        <mat-error *ngIf="validateField('paid').touched">{{ getErrorMessage("paid") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="txtBox change" appearance="standard" *ngIf="enableChangeBox">
@@ -46,7 +46,9 @@
 
       <span class="buttonSpace"></span>
 
-      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="disablePurchaseButton"><mat-icon class="buttonIcon">add</mat-icon>Add Sell</button>
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="disablePurchaseButton">
+        <mat-icon class="buttonIcon">add</mat-icon>Add Sell
+      </button>
     </div>
   </form>
 </div>

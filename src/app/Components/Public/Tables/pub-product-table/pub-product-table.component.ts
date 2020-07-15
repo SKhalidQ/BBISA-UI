@@ -35,6 +35,14 @@ export class PubProductTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<GetPubProduct>();
     this.dataSource.paginator = this.paginator;
     this.productService.getProductList().subscribe((products) => {
+      products.forEach((value) => {
+        if (value['alcoholic'].toString() == 'true') value['alcoholic'] = 'Yes';
+        else value['alcoholic'] = 'No';
+
+        if (value['returnable'].toString() == 'true') value['returnable'] = 'Yes';
+        else value['returnable'] = 'No';
+      });
+
       this.dataSource.data = products;
     });
     this.dataSource.sort = this.sort;

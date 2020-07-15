@@ -58,12 +58,14 @@ export class ProductEditComponent implements OnInit {
 
     this.http.put(this.defaultURL, this.editProduct.value).subscribe(
       (result) => {
-        this._snackBar.open(result['value'], 'Dismiss', {
+        this._snackBar.open(result['value'].value, 'Dismiss', {
           duration: 6000,
           panelClass: ['success-snackbar'],
         });
 
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {

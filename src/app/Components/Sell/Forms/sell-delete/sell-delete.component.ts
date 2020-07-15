@@ -12,7 +12,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./sell-delete.component.css'],
 })
 export class SellDeleteComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private sellService: SellService, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private sellService: SellService,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   deleteSell = new FormGroup({
     sellID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -38,6 +44,8 @@ export class SellDeleteComponent implements OnInit {
 
         this.sellService.redoGet.next();
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {

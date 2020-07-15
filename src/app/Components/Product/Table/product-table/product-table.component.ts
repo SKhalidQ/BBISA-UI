@@ -1,7 +1,8 @@
+import { BooleanValuesPipe } from './../../../../Pipes/boolean-values.pipe';
 import { ProgressBarService } from './../../../../Services/Progress Bar/progress-bar.service';
 import { GetProduct } from './../../../../Models/product.model';
 import { ProductService } from './../../../../Services/Product/product.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
@@ -22,7 +23,7 @@ export class ProductTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private productService: ProductService, private ProgBarService: ProgressBarService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.fillTable();
@@ -36,6 +37,14 @@ export class ProductTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<GetProduct>();
     this.dataSource.paginator = this.paginator;
     this.productService.getProductList().subscribe((products) => {
+      products.forEach((value) => {
+        if (value['alcoholic'].toString() == 'true') value['alcoholic'] = 'Yes';
+        else value['alcoholic'] = 'No';
+
+        if (value['returnable'].toString() == 'true') value['returnable'] = 'Yes';
+        else value['returnable'] = 'No';
+      });
+
       this.dataSource.data = products;
     });
     this.dataSource.sort = this.sort;

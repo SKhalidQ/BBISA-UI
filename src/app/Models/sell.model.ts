@@ -3,7 +3,7 @@ export interface GetSell {
   quantity: number;
   totalCost: number;
   containerReturned: string;
-  payed: number;
+  paid: number;
   sellDate: Date;
   product: {
     productID: number;

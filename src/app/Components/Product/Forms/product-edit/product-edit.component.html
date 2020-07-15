@@ -24,6 +24,7 @@
       <mat-form-field class="txtBox" appearance="standard">
         <mat-label>Discount</mat-label>
         <input matInput type="number" formControlName="discount" (change)="roundMethod($event)" [value]="discountBox" placeholder="Discount" />
+        <span matSuffix>%&nbsp;</span>
         <mat-error *ngIf="validateField('discount').invalid">{{ getErrorMessage("discount") }}</mat-error>
       </mat-form-field>
       <br /><br /><br />

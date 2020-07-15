@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'booleanValues',
 })
 export class BooleanValuesPipe implements PipeTransform {
-  transform(value: any): any {
-    return value ? 'Yes' : 'No';
+  public transform(value: string): any {
+    return value == 'true' ? 'Yes' : 'No';
   }
 }

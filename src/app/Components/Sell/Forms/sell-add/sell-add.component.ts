@@ -42,7 +42,7 @@ export class SellAddComponent implements OnInit {
     quantity: new FormControl('', [Validators.required, Validators.min(1), Validators.max(999)]),
     containerReturned: new FormControl(false),
     totalCost: new FormControl('', [Validators.required, Validators.min(0.01)]),
-    payed: new FormControl('', [Validators.required, Validators.min(0.01), Validators.max(999.99)]),
+    paid: new FormControl('', [Validators.required, Validators.min(0.01), Validators.max(999.99)]),
     change: new FormControl(''),
   });
 
@@ -89,6 +89,7 @@ export class SellAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
+        this.enableChangeBox = false;
         this.enablePayBox = false;
         this.enableSubtotalBox = false;
         this.disablePurchaseButton = true;
@@ -122,6 +123,8 @@ export class SellAddComponent implements OnInit {
         this.enableChangeBox = true;
         this.sellService.redoGet.next();
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       },
@@ -156,7 +159,7 @@ export class SellAddComponent implements OnInit {
     if (field.hasError('required')) return required;
 
     if (field.hasError('min')) {
-      if (fieldName == 'payed') return minValue;
+      if (fieldName == 'paid') return minValue;
       else return minIDValue;
     }
 

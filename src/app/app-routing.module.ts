@@ -1,3 +1,5 @@
+import { GraphsContentComponent } from './Components/Graphs/graphs-content/graphs-content.component';
+import { GraphsComponent } from './Components/Graphs/graphs/graphs.component';
 import { PubProductTableComponent } from './Components/Public/Tables/pub-product-table/pub-product-table.component';
 import { SellsComponent } from './Components/Sell/sells/sells.component';
 import { OrdersComponent } from './Components/Order/orders/orders.component';
@@ -22,6 +24,7 @@ const routes: Routes = [
       { path: 'Product', component: ProductsComponent },
       { path: 'Orders', component: OrdersComponent },
       { path: 'Sell', component: SellsComponent },
+      { path: 'Graphs', component: GraphsContentComponent },
     ],
   },
 ];

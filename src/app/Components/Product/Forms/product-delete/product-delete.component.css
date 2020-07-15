@@ -16,7 +16,7 @@ label {
 
 .txtBox {
   width: 180px;
-  margin-bottom: -20px;
+  margin-bottom: -18px;
 }
 
 mat-error {
@@ -45,6 +45,6 @@ div {
 }
 
 .tabGap {
-  height: 500px;
+  height: 520px;
   margin-top: -45px;
 }

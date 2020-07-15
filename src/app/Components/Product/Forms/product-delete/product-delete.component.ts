@@ -11,7 +11,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./product-delete.component.css'],
 })
 export class ProductDeleteComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
 
@@ -38,6 +43,8 @@ export class ProductDeleteComponent implements OnInit {
         });
 
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {

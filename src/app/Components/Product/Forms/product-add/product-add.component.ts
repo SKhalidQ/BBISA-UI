@@ -30,21 +30,21 @@ export class ProductAddComponent implements OnInit {
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
 
   postProduct = new FormGroup({
-    brand: new FormControl('', [Validators.required]),
-    flavour: new FormControl('', [Validators.required]),
+    brand: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    flavour: new FormControl('', [Validators.required, Validators.maxLength(40)]),
     alcoholic: new FormControl(false),
-    containerType: new FormControl('', [Validators.required]),
+    containerType: new FormControl('', [Validators.required, Validators.maxLength(20)]),
     returnable: new FormControl(false),
     sellPrice: new FormControl('', [Validators.required, Validators.min(0.01), Validators.max(999.99)]),
     discount: new FormControl(0, [Validators.min(0), Validators.max(100)]),
   });
 
+  myControl = new FormControl();
   options: string[] = ['Bottle', 'Can', 'Keg', 'Plastic'];
   filteredOptions: Observable<string[]>;
-  myControl = new FormControl();
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.postProduct.get('containerType').valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
@@ -60,12 +60,14 @@ export class ProductAddComponent implements OnInit {
 
     this.http.post(this.defaultURL, this.postProduct.value).subscribe(
       (result) => {
-        this._snackBar.open(result['value'].value, 'Dismiss', {
+        this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,
           panelClass: ['success-snackbar'],
         });
 
         this.productService.redoGet.next();
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -127,6 +129,6 @@ export class ProductAddComponent implements OnInit {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter((option) => option.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter((option) => option.toLowerCase().includes(filterValue));
   }
 }

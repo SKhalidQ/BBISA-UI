@@ -46,6 +46,9 @@ export class DashboardMenuComponent implements OnInit {
           panelClass: ['success-snackbar'],
         });
 
+        this.productService.redoGet.next();
+        this.orderService.redoGet.next();
+        this.sellService.redoGet.next();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -55,6 +58,7 @@ export class DashboardMenuComponent implements OnInit {
           duration: 6000,
           panelClass: ['fail-snackbar'],
         });
+
         this.progBarService.runProgressBar.next(false);
       }
     );
@@ -70,9 +74,7 @@ export class DashboardMenuComponent implements OnInit {
           panelClass: ['success-snackbar'],
         });
 
-        this.productService.redoGet.next();
-        this.orderService.redoGet.next();
-        this.sellService.redoGet.next();
+        this.router.navigateByUrl('/LogIn');
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -86,6 +88,7 @@ export class DashboardMenuComponent implements OnInit {
           duration: 6000,
           panelClass: ['fail-snackbar'],
         });
+
         this.progBarService.runProgressBar.next(false);
       }
     );

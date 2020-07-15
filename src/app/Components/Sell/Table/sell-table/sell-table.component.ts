@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./sell-table.component.css'],
 })
 export class SellTableComponent implements OnInit {
-  displayColumns = ['sellID', 'quantity', 'totalCost', 'containerReturned', 'payed', 'sellDate', 'productID'];
+  displayColumns = ['sellID', 'quantity', 'totalCost', 'containerReturned', 'paid', 'sellDate', 'productID'];
   dataSource: MatTableDataSource<GetSell>;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -35,6 +35,11 @@ export class SellTableComponent implements OnInit {
     this.dataSource = new MatTableDataSource<GetSell>();
     this.dataSource.paginator = this.paginator;
     this.sellService.getSellList().subscribe((products) => {
+      products.forEach((value) => {
+        if (value['containerReturned'].toString() == 'true') value['containerReturned'] = 'Yes';
+        else value['containerReturned'] = 'No';
+      });
+
       this.dataSource.data = products;
     });
     this.dataSource.sort = this.sort;

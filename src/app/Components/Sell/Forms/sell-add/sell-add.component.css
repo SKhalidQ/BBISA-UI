@@ -16,7 +16,7 @@ label {
 
 .txtBox {
   width: 180px;
-  margin-bottom: -20px;
+  margin-bottom: -18px;
 }
 
 .change {
@@ -61,6 +61,6 @@ div {
 }
 
 .tabGap {
-  height: 700px;
+  height: 500px;
   margin-top: -45px;
 }

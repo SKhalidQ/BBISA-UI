@@ -8,6 +8,16 @@ a:active {
   color: lightgray;
 }
 
+.leftButtons {
+  margin-left: 5px;
+}
+
+.leftButtons:hover,
+.leftButtons:active {
+  background-color: rgba(211, 211, 211, 0.2);
+  /* color: lightgray; */
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -30,6 +40,6 @@ a:active {
 }
 
 mat-toolbar {
-  position: fixed, top;
+  position: fixed top;
   z-index: 1000;
 }

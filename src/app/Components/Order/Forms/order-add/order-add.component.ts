@@ -12,7 +12,13 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./order-add.component.css'],
 })
 export class OrderAddComponent implements OnInit {
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private orderService: OrderService, private productService: ProductService, private progBarService: ProgressBarService) {}
+  constructor(
+    private http: HttpClient,
+    private _snackBar: MatSnackBar,
+    private orderService: OrderService,
+    private productService: ProductService,
+    private progBarService: ProgressBarService
+  ) {}
 
   private defaultURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
 
@@ -32,7 +38,7 @@ export class OrderAddComponent implements OnInit {
 
     this.http.post(url, this.addOrder.value).subscribe(
       (result) => {
-        this._snackBar.open(result['value'].value, 'Dismiss', {
+        this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,
           panelClass: ['success-snackbar'],
         });
@@ -40,6 +46,8 @@ export class OrderAddComponent implements OnInit {
         this.orderService.redoGet.next();
         this.productService.redoGet.next();
         url = this.defaultURL;
+        // this.postProduct.reset();
+        // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {

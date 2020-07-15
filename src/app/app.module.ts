@@ -69,6 +69,8 @@ import { StockBooleanPipe } from './Pipes/stock-boolean.pipe';
 
 //Other Libraries
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GraphsComponent } from './Components/Graphs/graphs/graphs.component';
+import { GraphsContentComponent } from './Components/Graphs/graphs-content/graphs-content.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     OrdersComponent,
     PubProductTableComponent,
     StockBooleanPipe,
+    GraphsComponent,
+    GraphsContentComponent,
   ],
   imports: [
     BrowserModule,

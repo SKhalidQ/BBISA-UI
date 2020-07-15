@@ -27,17 +27,10 @@ export class LogInComponent implements OnInit {
 
     this._http.get(this.defaultURL + '/Status/CurrentStatus').subscribe();
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        username: this.verifyUser.value['username'],
-        password: this.verifyUser.value['password'],
-      }),
-    };
-
-    this._http.options(this.defaultURL + '/Users/VerifyUser', httpOptions).subscribe(
+    this._http.post(this.defaultURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
       (result) => {
-        this._snackBar.open(`Welcome ${this.verifyUser.value['username']}`, 'Dismiss', {
+        // `Welcome ${this.verifyUser.value['username']}`
+        this._snackBar.open(result['value'], 'Dismiss', {
           duration: 4000,
           panelClass: 'logging-snackbar',
         });

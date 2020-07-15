@@ -17,7 +17,7 @@ label {
 
 .txtBox {
   width: 180px;
-  margin-bottom: -20px;
+  margin-bottom: -18px;
 }
 
 mat-error {
@@ -26,8 +26,8 @@ mat-error {
 
 .checkBox {
   margin-top: 5px;
-  margin-bottom: -25px;
-  padding-bottom: -25px;
+  margin-bottom: -26px;
+  padding-bottom: -26px;
 }
 
 div {
@@ -52,6 +52,6 @@ div {
 }
 
 .tabGap {
-  height: 500px;
+  height: 520px;
   margin-top: -45px;
 }
