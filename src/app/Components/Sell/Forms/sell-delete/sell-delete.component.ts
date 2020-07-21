@@ -20,7 +20,7 @@ export class SellDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://localhost:5001/API/Sell/EliminateSell';
+  private azureURL = 'https://localhost:5001/API/Sell/EliminateSell';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Sell/EliminateSell';
 
   deleteSell = new FormGroup({
@@ -38,7 +38,7 @@ export class SellDeleteComponent implements OnInit {
       body: this.deleteSell.value['sellID'],
     };
 
-    this.http.delete(this.defaultURL, httpOptions).subscribe(
+    this.http.delete(this.azureURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 2000,
