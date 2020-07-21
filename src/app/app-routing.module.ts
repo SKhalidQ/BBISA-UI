@@ -27,6 +27,7 @@ const routes: Routes = [
       { path: 'Graphs', component: GraphsContentComponent },
     ],
   },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({
