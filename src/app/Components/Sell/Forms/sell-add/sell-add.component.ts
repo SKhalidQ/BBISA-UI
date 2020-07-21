@@ -54,7 +54,7 @@ export class SellAddComponent implements OnInit {
     this.progBarService.runProgressBar.next(true);
 
     var url =
-      this.azureURL +
+      this.defaultURL +
       '/GetSubTotalSell?ProductID=' +
       this.postSell.value['productID'] +
       '&Quantity=' +
@@ -75,7 +75,7 @@ export class SellAddComponent implements OnInit {
         this.disablePurchaseButton = false;
 
         this.totalCost = result['value'].toFixed(2);
-        url = this.azureURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -97,7 +97,7 @@ export class SellAddComponent implements OnInit {
         this.enableSubtotalBox = false;
         this.disablePurchaseButton = true;
 
-        url = this.azureURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       }
     );
@@ -106,7 +106,7 @@ export class SellAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.azureURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
+    var url = this.defaultURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
 
     if (this.postSell.value['totalCost'] == '0') {
       this.postSell.value['totalCost'] = 0;
@@ -128,7 +128,7 @@ export class SellAddComponent implements OnInit {
         this.productService.redoGet.next();
         // this.postProduct.reset();
         // this.postProduct.markAsPristine();
-        url = this.azureURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -145,7 +145,7 @@ export class SellAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
-        url = this.azureURL;
+        url = this.defaultURL;
         this.progBarService.runProgressBar.next(false);
       }
     );

@@ -15,6 +15,6 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   getOrderList(): Observable<GetOrder[]> {
-    return this.http.get<GetOrder[]>(this.defaultURL);
+    return this.http.get<GetOrder[]>(this.azureURL);
   }
 }

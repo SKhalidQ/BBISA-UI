@@ -15,6 +15,6 @@ export class SellService {
   constructor(private http: HttpClient) {}
 
   getSellList(): Observable<GetSell[]> {
-    return this.http.get<GetSell[]>(this.defaultURL);
+    return this.http.get<GetSell[]>(this.azureURL);
   }
 }

@@ -59,7 +59,7 @@ export class ProductAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.post(this.azureURL, this.postProduct.value).subscribe(
+    this.http.post(this.defaultURL, this.postProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

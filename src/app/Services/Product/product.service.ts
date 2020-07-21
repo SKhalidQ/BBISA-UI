@@ -15,6 +15,6 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProductList(): Observable<GetProduct[]> {
-    return this.http.get<GetProduct[]>(this.defaultURL);
+    return this.http.get<GetProduct[]>(this.azureURL);
   }
 }
