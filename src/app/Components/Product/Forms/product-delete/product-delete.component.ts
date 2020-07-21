@@ -36,7 +36,7 @@ export class ProductDeleteComponent implements OnInit {
       body: this.deleteProduct.value['productID'],
     };
 
-    this.http.delete(this.defaultURL, httpOptions).subscribe(
+    this.http.delete(this.azureURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

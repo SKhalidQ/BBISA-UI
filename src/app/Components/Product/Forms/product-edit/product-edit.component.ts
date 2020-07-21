@@ -67,7 +67,7 @@ export class ProductEditComponent implements OnInit {
       this.editProduct.value['discount'] = -1;
     }
 
-    this.http.put(this.defaultURL, this.editProduct.value).subscribe(
+    this.http.put(this.azureURL, this.editProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

@@ -26,9 +26,9 @@ export class LogInComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this._http.get(this.defaultURL + '/Status/CurrentStatus').subscribe();
+    this._http.get(this.azureURL + '/Status/CurrentStatus').subscribe();
 
-    this._http.post(this.defaultURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
+    this._http.post(this.azureURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
       (result) => {
         // `Welcome ${this.verifyUser.value['username']}`
         this._snackBar.open(result['value'], 'Dismiss', {
