@@ -20,6 +20,9 @@ export class SellDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
+  private defaultURL = 'https://localhost:5001/API/Sell/EliminateSell';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Sell/EliminateSell';
+
   deleteSell = new FormGroup({
     sellID: new FormControl('', [Validators.required, Validators.min(1)]),
   });
@@ -35,7 +38,7 @@ export class SellDeleteComponent implements OnInit {
       body: this.deleteSell.value['sellID'],
     };
 
-    this.http.delete('https://bbisa.azurewebsites.net/api/Sell/EliminateSell', httpOptions).subscribe(
+    this.http.delete(this.defaultURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 2000,
@@ -51,8 +54,10 @@ export class SellDeleteComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

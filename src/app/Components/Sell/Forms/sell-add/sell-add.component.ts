@@ -35,7 +35,8 @@ export class SellAddComponent implements OnInit {
   totalCost: number;
   changeDue: number;
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Sell';
+  private defaultURL = 'https://localhost:5001/API/Sell';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Sell';
 
   postSell = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -80,8 +81,10 @@ export class SellAddComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {
@@ -131,8 +134,10 @@ export class SellAddComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

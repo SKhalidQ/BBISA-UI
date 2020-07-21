@@ -27,7 +27,8 @@ export class ProductAddComponent implements OnInit {
 
   discountBox: number;
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
+  private defaultURL = 'https://localhost:5001/API/Products/AddProduct';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
 
   postProduct = new FormGroup({
     brand: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -73,8 +74,10 @@ export class ProductAddComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

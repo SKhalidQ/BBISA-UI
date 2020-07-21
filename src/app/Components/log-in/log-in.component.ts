@@ -13,7 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class LogInComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private router: Router, private progBarService: ProgressBarService) {}
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api';
+  private defaultURL = 'https://localhost:5001/API';
+  private azureURL = 'https://bbisa.azurewebsites.net/api';
 
   verifyUser = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -38,10 +39,12 @@ export class LogInComponent implements OnInit {
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
-        var message = 'Unknown error';
+        var message = error.error['value'];
 
-        if (error.status == 401) {
-          message = 'Wrong username or password';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

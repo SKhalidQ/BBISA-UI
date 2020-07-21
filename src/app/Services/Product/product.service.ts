@@ -7,7 +7,8 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/ListProducts';
+  private defaultURL = 'https://localhost:5001/API/Products/ListProducts';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/ListProducts';
 
   redoGet: Subject<any> = new Subject();
 

@@ -1,0 +1,11 @@
+.mat-elevation-z20 {
+  width: auto;
+  height: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  padding: 300px 40%;
+}

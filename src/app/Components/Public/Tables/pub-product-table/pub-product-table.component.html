@@ -56,11 +56,11 @@
     <!-- Discount Column -->
     <ng-container matColumnDef="discount">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Discount</th>
-      <td mat-cell *matCellDef="let product">{{ product.discount | percent }}</td>
+      <td mat-cell *matCellDef="let product">{{ product.discount }}%</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
     <tr mat-row *matRowDef="let product; columns: displayColumns"></tr>
   </table>
-  <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[5, 10, 20, 40, 80]"></mat-paginator>
+  <mat-paginator class="mat-elevation-z20" [pageSizeOptions]="[10, 20, 40, 80]"></mat-paginator>
 </div>

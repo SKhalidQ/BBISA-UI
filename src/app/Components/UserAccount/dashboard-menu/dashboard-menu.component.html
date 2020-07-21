@@ -1,18 +1,10 @@
 <div class="mat-elevated-m8">
-  <h4>Edit Inventory Items</h4>
-  <button mat-raised-button color="accent" routerLink="Product">
-    Products
-  </button>
+  <h4>Inventory</h4>
+  <button mat-raised-button color="accent" routerLink="Product">Products</button>
   <br />
-  <button mat-raised-button color="accent" routerLink="Orders">
-    Orders
-  </button>
-
+  <button mat-raised-button color="accent" routerLink="Orders">Orders</button>
   <br />
-  <button mat-raised-button color="accent" routerLink="Sell">
-    Checkout
-  </button>
-
+  <button mat-raised-button color="accent" routerLink="Sell">Checkout</button>
   <mat-divider></mat-divider>
 
   <h4>Graphs</h4>
@@ -34,7 +26,9 @@
 
   <div class="request-themes">
     <h4>Settings</h4>
-    <button mat-raised-button color="primary" (click)="APIStatus()">API Status</button>
+    <div class="toolBar-themes">
+      <button mat-raised-button color="accent" (click)="APIStatus()">API Status</button>
+    </div>
     <button mat-raised-button color="warn" matTooltip="Clear all data from database" (click)="resetDatabase()">Reset API</button>
     <button mat-raised-button color="accent" disabled>Account <span class="tooltiptext">Coming Soon</span></button>
     <mat-divider></mat-divider>

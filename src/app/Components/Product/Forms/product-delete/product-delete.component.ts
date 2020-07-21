@@ -18,7 +18,8 @@ export class ProductDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
+  private defaultURL = 'https://localhost:5001/API/Products/EliminateProduct';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
 
   deleteProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -50,8 +51,10 @@ export class ProductDeleteComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {
@@ -68,7 +71,7 @@ export class ProductDeleteComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     var field = this.deleteProduct.get(fieldName);
     var required = 'Field is required';
-    var minValue = 'Must contain a minimum value of 1';
+    var minValue = 'Minimum value of 1';
 
     if (field.hasError('required')) return required;
 

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-product-edit',
@@ -23,7 +24,8 @@ export class ProductEditComponent implements OnInit {
 
   discountBox: number;
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
+  private defaultURL = 'https://localhost:5001/API/Products/UpdateInfo';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
 
   editProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -44,6 +46,15 @@ export class ProductEditComponent implements OnInit {
       this.editProduct.value['stockAmount'] = -1;
     }
 
+    if (this.editProduct.value['sellPrice'] == '-1' || this.editProduct.value['discount'] == '-1') {
+      this._snackBar.open('One or more validation errors', 'Dismiss', {
+        duration: 6000,
+        panelClass: ['fail-snackbar'],
+      });
+      this.progBarService.runProgressBar.next(false);
+      throw new Error('Cannot post -1');
+    }
+
     if (this.editProduct.value['sellPrice'] == '0') {
       this.editProduct.value['sellPrice'] = 0;
     } else if (this.editProduct.value['sellPrice'] == '' || this.editProduct.value['sellPrice'] == null) {
@@ -58,12 +69,14 @@ export class ProductEditComponent implements OnInit {
 
     this.http.put(this.defaultURL, this.editProduct.value).subscribe(
       (result) => {
-        this._snackBar.open(result['value'].value, 'Dismiss', {
+        this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,
           panelClass: ['success-snackbar'],
         });
 
         this.productService.redoGet.next();
+        this.editProduct.value['sellPrice'] = null;
+        this.editProduct.value['discount'] = null;
         // this.postProduct.reset();
         // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
@@ -71,8 +84,10 @@ export class ProductEditComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

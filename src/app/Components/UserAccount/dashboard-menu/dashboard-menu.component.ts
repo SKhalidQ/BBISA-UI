@@ -18,7 +18,8 @@ export class DashboardMenuComponent implements OnInit {
   @Output() hideShow = false;
 
   position = new FormControl('below');
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/';
+  private defaultURL = 'https://localhost:5001/API/';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/';
 
   constructor(
     private http: HttpClient,
@@ -52,7 +53,11 @@ export class DashboardMenuComponent implements OnInit {
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
-        var message = error.error['value'];
+        var message = error.error;
+
+        if (error.error['type'] == 'error') {
+          message = 'No response from the server';
+        }
 
         this._snackBar.open(message, 'Dismiss', {
           duration: 6000,
@@ -74,14 +79,14 @@ export class DashboardMenuComponent implements OnInit {
           panelClass: ['success-snackbar'],
         });
 
-        this.router.navigateByUrl('/LogIn');
+        this.router.navigateByUrl('/Home');
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
-        var message = error.error['value'];
+        var message = error.error;
 
-        if (error.status == 400) {
-          message = 'Internal server error';
+        if (error.error['type'] == 'error') {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {

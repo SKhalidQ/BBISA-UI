@@ -20,7 +20,8 @@ export class OrderAddComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
+  private defaultURL = 'https://localhost:5001/API/Orders/AddOrder?ProductID=';
+  private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
 
   addOrder = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -53,8 +54,10 @@ export class OrderAddComponent implements OnInit {
       (error) => {
         var message = error.error['value'];
 
-        if (error.status == 400) {
-          message = 'One or more validation errors';
+        if (error.status == 400 && error.error['title'] == 'One or more validation errors occurred.') {
+          message = error.error['title'];
+        } else if (error.error['value'] == null) {
+          message = 'No response from the server';
         }
 
         this._snackBar.open(message, 'Dismiss', {
