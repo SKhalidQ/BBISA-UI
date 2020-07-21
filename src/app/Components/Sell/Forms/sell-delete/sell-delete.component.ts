@@ -20,7 +20,7 @@ export class SellDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private azureURL = 'https://localhost:5001/API/Sell/EliminateSell';
+  private defaultURL = 'https://localhost:5001/API/Sell/EliminateSell';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Sell/EliminateSell';
 
   deleteSell = new FormGroup({

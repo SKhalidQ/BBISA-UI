@@ -18,7 +18,7 @@ export class DashboardMenuComponent implements OnInit {
   @Output() hideShow = false;
 
   position = new FormControl('below');
-  private azureURL = 'https://localhost:5001/API/';
+  private defaultURL = 'https://localhost:5001/API/';
   private azureURL = 'https://bbisa.azurewebsites.net/api/';
 
   constructor(

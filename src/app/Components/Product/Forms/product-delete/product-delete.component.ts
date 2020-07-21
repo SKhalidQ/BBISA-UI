@@ -18,7 +18,7 @@ export class ProductDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private azureURL = 'https://localhost:5001/API/Products/EliminateProduct';
+  private defaultURL = 'https://localhost:5001/API/Products/EliminateProduct';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
 
   deleteProduct = new FormGroup({

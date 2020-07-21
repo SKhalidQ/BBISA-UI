@@ -20,7 +20,7 @@ export class OrderAddComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private azureURL = 'https://localhost:5001/API/Orders/AddOrder?ProductID=';
+  private defaultURL = 'https://localhost:5001/API/Orders/AddOrder?ProductID=';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
 
   addOrder = new FormGroup({

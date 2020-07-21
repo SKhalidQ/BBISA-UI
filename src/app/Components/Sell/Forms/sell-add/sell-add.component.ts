@@ -35,7 +35,7 @@ export class SellAddComponent implements OnInit {
   totalCost: number;
   changeDue: number;
 
-  private azureURL = 'https://localhost:5001/API/Sell';
+  private defaultURL = 'https://localhost:5001/API/Sell';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Sell';
 
   postSell = new FormGroup({

@@ -20,7 +20,7 @@ export class OrderDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private azureURL = 'https://localhost:5001/API/Orders/EliminateOrder';
+  private defaultURL = 'https://localhost:5001/API/Orders/EliminateOrder';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/EliminateOrder';
 
   deleteOrder = new FormGroup({

@@ -24,7 +24,7 @@ export class ProductEditComponent implements OnInit {
 
   discountBox: number;
 
-  private azureURL = 'https://localhost:5001/API/Products/UpdateInfo';
+  private defaultURL = 'https://localhost:5001/API/Products/UpdateInfo';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
 
   editProduct = new FormGroup({

@@ -13,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class LogInComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private router: Router, private progBarService: ProgressBarService) {}
 
-  private azureURL = 'https://localhost:5001/API';
+  private defaultURL = 'https://localhost:5001/API';
   private azureURL = 'https://bbisa.azurewebsites.net/api';
 
   verifyUser = new FormGroup({

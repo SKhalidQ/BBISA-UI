@@ -27,7 +27,7 @@ export class ProductAddComponent implements OnInit {
 
   discountBox: number;
 
-  private azureURL = 'https://localhost:5001/API/Products/AddProduct';
+  private defaultURL = 'https://localhost:5001/API/Products/AddProduct';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
 
   postProduct = new FormGroup({
