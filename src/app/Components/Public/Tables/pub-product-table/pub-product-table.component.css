@@ -44,9 +44,14 @@ th {
   text-align: center;
 }
 
-@media (max-width: 785px) {
+@media (max-width: 785px), (max-height: 411px) {
   .mat-elevation-z20 {
     width: 95%;
     margin: 25px auto;
+  }
+
+  th,
+  td {
+    font-size: small;
   }
 }
