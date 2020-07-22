@@ -7,6 +7,10 @@
   /* border-style: dotted; */
 }
 
+h2 {
+  margin-bottom: -5px;
+}
+
 button {
   width: 107px;
   margin-bottom: 10px;

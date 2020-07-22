@@ -1,5 +1,7 @@
 <div class="mat-elevated-m8">
-  <h4>Inventory</h4>
+  <h2>Menu</h2>
+  <mat-divider></mat-divider>
+  <h3>Inventory</h3>
   <button mat-raised-button color="accent" routerLink="Product">Products</button>
   <br />
   <button mat-raised-button color="accent" routerLink="Orders">Orders</button>
@@ -7,7 +9,7 @@
   <button mat-raised-button color="accent" routerLink="Sell">Checkout</button>
   <mat-divider></mat-divider>
 
-  <h4>Graphs</h4>
+  <h3>Graphs</h3>
   <mat-form-field>
     <mat-label>Choose an option</mat-label>
     <mat-select disabled>
@@ -25,14 +27,14 @@
   <mat-divider></mat-divider>
 
   <div class="request-themes">
-    <h4>Settings</h4>
+    <h3>Settings</h3>
     <div class="toolBar-themes">
       <button mat-raised-button color="accent" (click)="APIStatus()">API Status</button>
     </div>
     <button mat-raised-button color="warn" matTooltip="Clear all data from database" (click)="resetDatabase()">Reset API</button>
     <button mat-raised-button color="accent" disabled>Account <span class="tooltiptext">Coming Soon</span></button>
     <mat-divider></mat-divider>
-    <h4>Exit</h4>
+    <h3>Exit</h3>
     <button mat-raised-button color="accent" (click)="logOut()">Log Out</button>
   </div>
 </div>
