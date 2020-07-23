@@ -71,6 +71,8 @@ import { StockBooleanPipe } from './Pipes/stock-boolean.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { GraphsComponent } from './Components/Graphs/graphs/graphs.component';
 import { GraphsContentComponent } from './Components/Graphs/graphs-content/graphs-content.component';
+import { PathErrorComponent } from './Components/Navigation/path-error/path-error.component';
+import { AccountComponent } from './Components/UserAccount/account/account.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,8 @@ import { GraphsContentComponent } from './Components/Graphs/graphs-content/graph
     StockBooleanPipe,
     GraphsComponent,
     GraphsContentComponent,
+    PathErrorComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
