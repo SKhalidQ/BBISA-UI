@@ -7,6 +7,10 @@
   /* border-style: dotted; */
 }
 
+.active {
+  background: #607d8b69;
+}
+
 h2 {
   margin-bottom: -5px;
 }

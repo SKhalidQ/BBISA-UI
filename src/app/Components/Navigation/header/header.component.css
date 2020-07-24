@@ -3,13 +3,17 @@ a {
   color: white;
 }
 
+.active {
+  background: #d81b60a1;
+}
+
 a:hover,
 a:active {
   color: lightgray;
 }
 
 .leftButtons {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .leftButtons:hover,
@@ -27,6 +31,7 @@ a:active {
 }
 
 .RightButtons {
+  margin-right: 10px;
   width: 80px;
 }
 
@@ -42,4 +47,12 @@ a:active {
 mat-toolbar {
   position: fixed top;
   z-index: 1000;
+}
+
+@media (max-width: 785px), (max-height: 411px) {
+  .leftButtons {
+  }
+
+  .RightButtons {
+  }
 }

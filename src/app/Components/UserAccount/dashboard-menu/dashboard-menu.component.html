@@ -2,11 +2,11 @@
   <h2>Menu</h2>
   <mat-divider></mat-divider>
   <h3>Inventory</h3>
-  <button mat-raised-button color="accent" routerLink="Product">Products</button>
+  <button mat-raised-button color="accent" routerLink="Product" routerLinkActive="active">Products</button>
   <br />
-  <button mat-raised-button color="accent" routerLink="Orders">Orders</button>
+  <button mat-raised-button color="accent" routerLink="Orders" routerLinkActive="active">Orders</button>
   <br />
-  <button mat-raised-button color="accent" routerLink="Sell">Checkout</button>
+  <button mat-raised-button color="accent" routerLink="Sell" routerLinkActive="active">Checkout</button>
   <mat-divider></mat-divider>
 
   <h3>Graphs</h3>
@@ -20,7 +20,7 @@
     </mat-select>
   </mat-form-field>
 
-  <button mat-raised-button color="warn" routerLink="Graphs" disabled>
+  <button mat-raised-button color="warn" routerLink="Graphs" routerLinkActive="active" disabled>
     Show Graph
     <span class="tooltiptext">Coming Soon</span>
   </button>
