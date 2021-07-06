@@ -42,7 +42,7 @@ export class DashboardMenuComponent implements OnInit {
   APIStatus() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.get(this.privateHostURL + 'Status/CurrentStatus').subscribe(
+    this.http.get(this.privateHostURL + '/Status/CurrentStatus').subscribe(
       (result) => {
         this._snackBar.open(result.toString(), 'Dismiss', {
           duration: 4000,
@@ -74,7 +74,7 @@ export class DashboardMenuComponent implements OnInit {
   resetDatabase() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.options(this.privateHostURL + 'Status/ClearDatabase').subscribe(
+    this.http.options(this.privateHostURL + '/Status/ClearDatabase').subscribe(
       (result) => {
         this._snackBar.open(result.toString(), 'Dismiss', {
           duration: 4000,
