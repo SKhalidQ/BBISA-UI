@@ -24,8 +24,9 @@ export class ProductEditComponent implements OnInit {
 
   discountBox: number;
 
-  private defaultURL = 'https://localhost:5001/API/Products/UpdateInfo';
+  private localHostURL = 'https://localhost:5001/API/Products/UpdateInfo';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/UpdateInfo';
 
   editProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -67,7 +68,7 @@ export class ProductEditComponent implements OnInit {
       this.editProduct.value['discount'] = -1;
     }
 
-    this.http.put(this.azureURL, this.editProduct.value).subscribe(
+    this.http.put(this.privateHostURL, this.editProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

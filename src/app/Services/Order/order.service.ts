@@ -7,14 +7,16 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
-  private defaultURL = 'https://localhost:5001/API/Orders/ListOrders';
+
+  private localHostURL = 'https://localhost:5001/API/Orders/ListOrders';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/ListOrders';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Orders/ListOrders';
 
   redoGet: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getOrderList(): Observable<GetOrder[]> {
-    return this.http.get<GetOrder[]>(this.azureURL);
+    return this.http.get<GetOrder[]>(this.privateHostURL);
   }
 }

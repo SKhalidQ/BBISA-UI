@@ -18,8 +18,9 @@ export class ProductDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://localhost:5001/API/Products/EliminateProduct';
+  private localHostURL = 'https://localhost:5001/API/Products/EliminateProduct';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/EliminateProduct';
 
   deleteProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -36,7 +37,7 @@ export class ProductDeleteComponent implements OnInit {
       body: this.deleteProduct.value['productID'],
     };
 
-    this.http.delete(this.azureURL, httpOptions).subscribe(
+    this.http.delete(this.privateHostURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

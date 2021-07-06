@@ -7,14 +7,16 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  private defaultURL = 'https://localhost:5001/API/Products/ListProducts';
+
+  private localHostURL = 'https://localhost:5001/API/Products/ListProducts';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/ListProducts';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/ListProducts';
 
   redoGet: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getProductList(): Observable<GetProduct[]> {
-    return this.http.get<GetProduct[]>(this.azureURL);
+    return this.http.get<GetProduct[]>(this.privateHostURL);
   }
 }

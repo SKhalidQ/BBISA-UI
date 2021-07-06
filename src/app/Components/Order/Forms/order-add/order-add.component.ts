@@ -20,8 +20,9 @@ export class OrderAddComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://localhost:5001/API/Orders/AddOrder?ProductID=';
+  private localHostURL = 'https://localhost:5001/API/Orders/AddOrder?ProductID=';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/AddOrder?ProductID=';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Orders/AddOrder?ProductID=';
 
   addOrder = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -35,7 +36,7 @@ export class OrderAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.azureURL + this.addOrder.value['productID'];
+    var url = this.privateHostURL + this.addOrder.value['productID'];
 
     this.http.post(url, this.addOrder.value).subscribe(
       (result) => {
@@ -46,7 +47,7 @@ export class OrderAddComponent implements OnInit {
 
         this.orderService.redoGet.next();
         this.productService.redoGet.next();
-        url = this.azureURL;
+        url = this.privateHostURL;
         // this.postProduct.reset();
         // this.postProduct.markAsPristine();
         this.progBarService.runProgressBar.next(false);
@@ -65,7 +66,7 @@ export class OrderAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
-        url = this.azureURL;
+        url = this.privateHostURL;
         this.progBarService.runProgressBar.next(false);
       }
     );

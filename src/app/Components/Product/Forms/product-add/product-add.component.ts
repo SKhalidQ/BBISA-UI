@@ -27,8 +27,9 @@ export class ProductAddComponent implements OnInit {
 
   discountBox: number;
 
-  private defaultURL = 'https://localhost:5001/API/Products/AddProduct';
+  private localHostURL = 'https://localhost:5001/API/Products/AddProduct';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/AddProduct';
 
   postProduct = new FormGroup({
     brand: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -59,7 +60,7 @@ export class ProductAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.post(this.azureURL, this.postProduct.value).subscribe(
+    this.http.post(this.privateHostURL, this.postProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

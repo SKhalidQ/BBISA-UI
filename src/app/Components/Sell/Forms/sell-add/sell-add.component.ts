@@ -35,8 +35,9 @@ export class SellAddComponent implements OnInit {
   totalCost: number;
   changeDue: number;
 
-  private defaultURL = 'https://localhost:5001/API/Sell';
+  private localHostURL = 'https://localhost:5001/API/Sell';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Sell';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Sell';
 
   postSell = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -54,7 +55,7 @@ export class SellAddComponent implements OnInit {
     this.progBarService.runProgressBar.next(true);
 
     var url =
-      this.azureURL +
+      this.privateHostURL +
       '/GetSubTotalSell?ProductID=' +
       this.postSell.value['productID'] +
       '&Quantity=' +
@@ -75,7 +76,7 @@ export class SellAddComponent implements OnInit {
         this.disablePurchaseButton = false;
 
         this.totalCost = result['value'].toFixed(2);
-        url = this.azureURL;
+        url = this.privateHostURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -97,7 +98,7 @@ export class SellAddComponent implements OnInit {
         this.enableSubtotalBox = false;
         this.disablePurchaseButton = true;
 
-        url = this.azureURL;
+        url = this.privateHostURL;
         this.progBarService.runProgressBar.next(false);
       }
     );
@@ -106,7 +107,7 @@ export class SellAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.azureURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
+    var url = this.privateHostURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
 
     if (this.postSell.value['totalCost'] == '0') {
       this.postSell.value['totalCost'] = 0;
@@ -128,7 +129,7 @@ export class SellAddComponent implements OnInit {
         this.productService.redoGet.next();
         // this.postProduct.reset();
         // this.postProduct.markAsPristine();
-        url = this.azureURL;
+        url = this.privateHostURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -145,7 +146,7 @@ export class SellAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
-        url = this.azureURL;
+        url = this.privateHostURL;
         this.progBarService.runProgressBar.next(false);
       }
     );

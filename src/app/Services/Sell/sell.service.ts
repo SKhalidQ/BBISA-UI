@@ -7,14 +7,16 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class SellService {
-  private defaultURL = 'https://localhost:5001/API/Sell/ListSells';
+
+  private localHostURL = 'https://localhost:5001/API/Sell/ListSells';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Sell/ListSells';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Sell/ListSells';
 
   redoGet: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) {}
 
   getSellList(): Observable<GetSell[]> {
-    return this.http.get<GetSell[]>(this.azureURL);
+    return this.http.get<GetSell[]>(this.privateHostURL);
   }
 }

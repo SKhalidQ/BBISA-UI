@@ -20,8 +20,9 @@ export class OrderDeleteComponent implements OnInit {
     private progBarService: ProgressBarService
   ) {}
 
-  private defaultURL = 'https://localhost:5001/API/Orders/EliminateOrder';
+  private localHostURL = 'https://localhost:5001/API/Orders/EliminateOrder';
   private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/EliminateOrder';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Orders/EliminateOrder';
 
   deleteOrder = new FormGroup({
     orderID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -37,7 +38,7 @@ export class OrderDeleteComponent implements OnInit {
       body: this.deleteOrder.value['orderID'],
     };
 
-    this.http.delete(this.azureURL, httpOptions).subscribe(
+    this.http.delete(this.privateHostURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,
