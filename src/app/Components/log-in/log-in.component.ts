@@ -13,8 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class LogInComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private router: Router, private progBarService: ProgressBarService) {}
 
-  private defaultURL = 'https://localhost:5001/API';
+  private localHostURL = 'https://localhost:5001/API';
   private azureURL = 'https://bbisa.azurewebsites.net/api';
+  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api';
 
   verifyUser = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -26,9 +27,9 @@ export class LogInComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this._http.get(this.azureURL + '/Status/CurrentStatus').subscribe();
+    this._http.get(this.privateHostURL + '/Status/CurrentStatus').subscribe();
 
-    this._http.post(this.azureURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
+    this._http.post(this.privateHostURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
       (result) => {
         // `Welcome ${this.verifyUser.value['username']}`
         this._snackBar.open(result['value'], 'Dismiss', {
