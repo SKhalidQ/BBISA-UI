@@ -50,6 +50,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'Testing-Wesbite'
+          app-name: 'bbis-ui'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EBAA6F4E3E4941EAA11133B0AA42529C }}
-          package: ./dist/Testing-Wesbite
+          package: ./dist/bbis-ui
