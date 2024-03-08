@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-log-in',
@@ -12,10 +13,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogInComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar, private router: Router, private progBarService: ProgressBarService) {}
-
-  private localHostURL = 'https://localhost:5001/API';
-  private azureURL = 'https://bbisa.azurewebsites.net/api';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api';
 
   verifyUser = new FormGroup({
     username: new FormControl('', [Validators.required]),
@@ -27,9 +24,9 @@ export class LogInComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this._http.get(this.privateHostURL + '/Status/CurrentStatus').subscribe();
+    this._http.get(environment.apiURL + '/Status/CurrentStatus').subscribe();
 
-    this._http.post(this.privateHostURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
+    this._http.post(environment.apiURL + '/Users/VerifyUser', this.verifyUser.value).subscribe(
       (result) => {
         // `Welcome ${this.verifyUser.value['username']}`
         this._snackBar.open(result['value'], 'Dismiss', {

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-delete',
@@ -17,10 +18,8 @@ export class ProductDeleteComponent implements OnInit {
     private productService: ProductService,
     private progBarService: ProgressBarService
   ) {}
-
-  private localHostURL = 'https://localhost:5001/API/Products/EliminateProduct';
-  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/EliminateProduct';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/EliminateProduct';
+  
+  private apiURL = environment.apiURL + '/Products/EliminateProduct';
 
   deleteProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -37,7 +36,7 @@ export class ProductDeleteComponent implements OnInit {
       body: this.deleteProduct.value['productID'],
     };
 
-    this.http.delete(this.privateHostURL, httpOptions).subscribe(
+    this.http.delete(this.apiURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

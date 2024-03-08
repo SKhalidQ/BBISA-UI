@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-menu',
@@ -18,11 +19,7 @@ export class DashboardMenuComponent implements OnInit {
   @Output() hideShow = false;
 
   position = new FormControl('below');
-
-  private localHostURL = 'https://localhost:5001/API';
-  private azureURL = 'https://bbisa.azurewebsites.net/api';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api';
-
+  
   constructor(
     private http: HttpClient,
     private _snackBar: MatSnackBar,
@@ -42,7 +39,7 @@ export class DashboardMenuComponent implements OnInit {
   APIStatus() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.get(this.privateHostURL + '/Status/CurrentStatus').subscribe(
+    this.http.get(environment.apiURL + '/Status/CurrentStatus').subscribe(
       (result) => {
         this._snackBar.open(result.toString(), 'Dismiss', {
           duration: 4000,
@@ -74,7 +71,7 @@ export class DashboardMenuComponent implements OnInit {
   resetDatabase() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.options(this.privateHostURL + '/Status/ClearDatabase').subscribe(
+    this.http.options(environment.apiURL + '/Status/ClearDatabase').subscribe(
       (result) => {
         this._snackBar.open(result.toString(), 'Dismiss', {
           duration: 4000,

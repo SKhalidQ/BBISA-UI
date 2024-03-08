@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-add',
@@ -27,9 +28,7 @@ export class ProductAddComponent implements OnInit {
 
   discountBox: number;
 
-  private localHostURL = 'https://localhost:5001/API/Products/AddProduct';
-  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/AddProduct';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/AddProduct';
+  private apiURL = environment.apiURL + '/Products/AddProduct';
 
   postProduct = new FormGroup({
     brand: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -60,7 +59,7 @@ export class ProductAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    this.http.post(this.privateHostURL, this.postProduct.value).subscribe(
+    this.http.post(this.apiURL, this.postProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

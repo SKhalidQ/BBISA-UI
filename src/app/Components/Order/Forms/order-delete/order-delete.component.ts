@@ -5,6 +5,7 @@ import { OrderService } from './../../../../Services/Order/order.service';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-delete',
@@ -19,10 +20,8 @@ export class OrderDeleteComponent implements OnInit {
     private productService: ProductService,
     private progBarService: ProgressBarService
   ) {}
-
-  private localHostURL = 'https://localhost:5001/API/Orders/EliminateOrder';
-  private azureURL = 'https://bbisa.azurewebsites.net/api/Orders/EliminateOrder';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Orders/EliminateOrder';
+  
+  private apiURL = environment.apiURL + '/Orders/EliminateOrder';
 
   deleteOrder = new FormGroup({
     orderID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -38,7 +37,7 @@ export class OrderDeleteComponent implements OnInit {
       body: this.deleteOrder.value['orderID'],
     };
 
-    this.http.delete(this.privateHostURL, httpOptions).subscribe(
+    this.http.delete(this.apiURL, httpOptions).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,

@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sell-add',
@@ -35,9 +36,7 @@ export class SellAddComponent implements OnInit {
   totalCost: number;
   changeDue: number;
 
-  private localHostURL = 'https://localhost:5001/API/Sell';
-  private azureURL = 'https://bbisa.azurewebsites.net/api/Sell';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Sell';
+  private apiURL = environment.apiURL + '/Sell';
 
   postSell = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -55,7 +54,7 @@ export class SellAddComponent implements OnInit {
     this.progBarService.runProgressBar.next(true);
 
     var url =
-      this.privateHostURL +
+      this.apiURL +
       '/GetSubTotalSell?ProductID=' +
       this.postSell.value['productID'] +
       '&Quantity=' +
@@ -76,7 +75,7 @@ export class SellAddComponent implements OnInit {
         this.disablePurchaseButton = false;
 
         this.totalCost = result['value'].toFixed(2);
-        url = this.privateHostURL;
+        url = this.apiURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -98,7 +97,7 @@ export class SellAddComponent implements OnInit {
         this.enableSubtotalBox = false;
         this.disablePurchaseButton = true;
 
-        url = this.privateHostURL;
+        url = this.apiURL;
         this.progBarService.runProgressBar.next(false);
       }
     );
@@ -107,7 +106,7 @@ export class SellAddComponent implements OnInit {
   onSubmit() {
     this.progBarService.runProgressBar.next(true);
 
-    var url = this.privateHostURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
+    var url = this.apiURL + '/AddSell?ProductID=' + this.postSell.value['productID'];
 
     if (this.postSell.value['totalCost'] == '0') {
       this.postSell.value['totalCost'] = 0;
@@ -129,7 +128,7 @@ export class SellAddComponent implements OnInit {
         this.productService.redoGet.next();
         // this.postProduct.reset();
         // this.postProduct.markAsPristine();
-        url = this.privateHostURL;
+        url = this.apiURL;
         this.progBarService.runProgressBar.next(false);
       },
       (error) => {
@@ -146,7 +145,7 @@ export class SellAddComponent implements OnInit {
           panelClass: ['fail-snackbar'],
         });
 
-        url = this.privateHostURL;
+        url = this.apiURL;
         this.progBarService.runProgressBar.next(false);
       }
     );

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-edit',
@@ -23,10 +24,7 @@ export class ProductEditComponent implements OnInit {
   checkedR = false;
 
   discountBox: number;
-
-  private localHostURL = 'https://localhost:5001/API/Products/UpdateInfo';
-  private azureURL = 'https://bbisa.azurewebsites.net/api/Products/UpdateInfo';
-  private privateHostURL = 'https://raspi.skhalidq.dev/bbis_api/Products/UpdateInfo';
+  private apiURL = environment.apiURL + '/Products/UpdateInfo';
 
   editProduct = new FormGroup({
     productID: new FormControl('', [Validators.required, Validators.min(1)]),
@@ -68,7 +66,7 @@ export class ProductEditComponent implements OnInit {
       this.editProduct.value['discount'] = -1;
     }
 
-    this.http.put(this.privateHostURL, this.editProduct.value).subscribe(
+    this.http.put(this.apiURL, this.editProduct.value).subscribe(
       (result) => {
         this._snackBar.open(result['value'], 'Dismiss', {
           duration: 6000,
